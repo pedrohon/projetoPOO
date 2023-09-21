@@ -2,17 +2,29 @@
 
 include_once("class.pessoa.php");
 
-class profissional extends pessoa {
+class Profissional extends Pessoa {
   
-  private $salario;
-  private $endereco;
-  private $cargo;
+  protected $salario;
+  protected $endereco;
+  protected $cargo;
 
   public function __construct ($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo){
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
     $this->salario = $salario;
     $this->endereco = $endereco;
     $this->cargo = $cargo;
+  }
+
+  public function getSalario() {
+    return $this->salario;
+  }
+
+  public function getEndereco() {
+    return $this->endereco;
+  }
+
+  public function getCargo() {
+    return $this->cargo;
   }
 }
 ?>
