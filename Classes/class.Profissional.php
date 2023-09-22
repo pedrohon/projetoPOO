@@ -1,6 +1,6 @@
 <?php
 
-include_once("class.pessoa.php");
+include_once("../Testes/class.pessoa.teste.php");
 
 class Profissional extends Pessoa {
   
