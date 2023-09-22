@@ -26,5 +26,17 @@ class Profissional extends Pessoa {
   public function getCargo() {
     return $this->cargo;
   }
+
+  public function setSalario($salario) {
+    $this->salario = $salario;
+  }
+
+  public function setEndereco($endereco) {
+    $this->endereco = $endereco;
+  }
+
+  public function setCargo($cargo) {
+    $this->cargo = $cargo;
+  }
 }
 ?>
