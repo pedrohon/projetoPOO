@@ -1,6 +1,6 @@
 <?php
 
-require_once ('Pessoa.php');
+
 require_once ('Profissional.php');
 
 
