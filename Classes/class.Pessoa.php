@@ -1,4 +1,4 @@
-<? php  
+<?php  
 
   class Pessoa {
 
@@ -48,3 +48,5 @@
     $this->rg = $rg;
     }
 }
+
+?>
