@@ -1,37 +1,16 @@
 <?php
 
-class Pessoa {
-    private $nome;
-    private $telefone;
-    private $email;
-    private $cpf;
-    private $rg;
+require_once '../classes/class.Pessoa.php';
+require_once 'Pessoa.php';
 
-    public function __construct($nome, $telefone, $email, $cpf, $rg) {
-        $this->nome = $nome;
-        $this->telefone = $telefone;
-        $this->email = $email;
-        $this->cpf = $cpf;
-        $this->rg = $rg;
-    }
+// Instanciando a classe pessoa e passando valores como exemplo para o construtor
+$pessoa = new Pessoa("Mariana Sousa", "(31)98327-2000", "mari@example.com", "146.242.276-46", "21-033.451");
 
-    public function getNome() {
-        return $this->nome;
-    }
+// Recuperando os valores de pessoas e exibindo-os
+echo "Nome: " . $pessoa->getNome() . "\n";
+echo "Telefone: " . $pessoa->getTelefone() . "\n";
+echo "Email: " . $pessoa->getEmail() . "\n";
+echo "CPF: " . $pessoa->getCpf() . "\n";
+echo "RG: " . $pessoa->getRg() . "\n";
 
-    public function getTelefone() {
-        return $this->telefone;
-    }
-
-    public function getEmail() {
-        return $this->email;
-    }
-
-    public function getCpf() {
-        return $this->cpf;
-    }
-
-    public function getRg() {
-        return $this->rg;
-    }
-}
+?>
