@@ -1,6 +1,6 @@
 <?php
 
-include_once("../Testes/class.pessoa.teste.php");
+include_once("class.Pessoa.php");
 
 class Paciente extends Pessoa {
     protected $tratamento;

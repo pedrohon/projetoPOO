@@ -1,8 +1,5 @@
 <?php
-
-
-require_once ('Profissional.php');
-
+require_once ('class.Profissional.php');
 
 class Dentista extends Profissional {
 
