@@ -1,54 +1,78 @@
-<?php  
+<?php
 
 include_once '../global.php';
 
-  class Pessoa {
+class Pessoa extends persist
+{
 
-    protected $nome;
-    protected $telefone;
-    protected $email;
-    protected $cpf;
-    protected $rg;
+  static $local_filename = "Pessoa.txt";
+  static public function getFilename()
+  {
+    return get_called_class()::$local_filename;
+  }
 
-    public function __construct($nome, $telefone, $email, $cpf, $rg) {
-      $this->nome = $nome;
-      $this->telefone = $telefone;
-      $this->email = $email;
-      $this->cpf = $cpf;
-      $this->rg = $rg;
-    }
+  protected $nome;
+  protected $telefone;
+  protected $email;
+  protected $cpf;
+  protected $rg;
 
-    public function getNome() {
-      return $this->nome; 
-    }
-    public function getTelefone() {
-      return $this->telefone; 
-    }
-    public function getEmail() {
-      return $this->email; 
-    }
-    public function getCpf() {
-      return $this->cpf; 
-    }
-    public function getRg() {
-      return $this->rg; 
-    }
-
-    public function setNome($nome) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg)
+  {
     $this->nome = $nome;
-    }
-    public function setTelefone($telefone) {
     $this->telefone = $telefone;
-    }
-    public function setEmail($email) {
     $this->email = $email;
-    }
-    public function setCpf($cpf) {
     $this->cpf = $cpf;
-    }
-    public function setRg($rg) {
     $this->rg = $rg;
-    }
-}
+  }
 
-?>
+  public function getNome()
+  {
+    return $this->nome;
+  }
+
+  public function getTelefone()
+  {
+    return $this->telefone;
+  }
+
+  public function getEmail()
+  {
+    return $this->email;
+  }
+
+  public function getCpf()
+  {
+    return $this->cpf;
+  }
+
+  public function getRg()
+  {
+    return $this->rg;
+  }
+
+  public function setNome($nome)
+  {
+    $this->nome = $nome;
+  }
+
+  public function setTelefone($telefone)
+  {
+    $this->telefone = $telefone;
+  }
+
+  public function setEmail($email)
+  {
+    $this->email = $email;
+  }
+
+  public function setCpf($cpf)
+  {
+    $this->cpf = $cpf;
+  }
+  
+  public function setRg($rg)
+  {
+    $this->rg = $rg;
+  }
+}
