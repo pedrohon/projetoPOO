@@ -4,39 +4,54 @@ include_once '../global.php';
 
 class Dentista extends Profissional {
 
-    protected string $cro;
-    protected string $especializacao;
-    protected bool   $parceiro;
-    protected float  $percentualDeParticipacao;
+  static $local_filename = "Dentista.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
 
-// construtor da classe dentista 
+  protected $cro;
+  protected $especialidade = array();
+  protected $parceiro;
+  protected $percentualDeParticipacao;
 
-    public function __construct(string $nome, string $telefone, string $email, string $cpf, string $rg, float $salario, string $endereco, string $cargo, string $cro, string $especializacao, bool $parceiro, float $percentualDeParticipacao) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, Especialidade $especialidade, $parceiro, $percentualDeParticipacao) {
+    parent::__construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
+    $this->cro = $cro;
+    $this->especialidade = $especialidade;
+    $this->parceiro = $parceiro;
+    $this->percentualDeParticipacao = $percentualDeParticipacao;
+  }
 
-// puxando construtor das classes mães 
+  public function getCro() {
+    return $this->cro;
+  }
 
-        parent::__construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
+  public function getEspecialidade() {
+    return $this->especialidade;
+  }
 
-        $this->cro = $cro;
-        $this->especializacao = $especializacao;
-        $this->parceiro = $parceiro;
-        $this->percentualDeParticipacao = $percentualDeParticipacao;
-    }
+  public function getParceiro() {
+    return $this->parceiro;
+  }
 
-    public function getCro(): string {
-        return $this->cro;
-    }
+  public function getPercentualDeParticipacao() {
+    return $this->percentualDeParticipacao;
+  }
 
-    public function getEspecializacao(): string {
-        return $this->especializacao;
-    }
+  public function setCro($cro) {
+    $this->cro = $cro;
+  }
 
-    public function getParceiro(): bool {
-        return $this->parceiro;
-    }
+  public function setEspecializacao($especialidade) {
+    $this->especialidade = $especialidade;
+  }
 
-    public function getPercentualDeParticipacao(): float {
-        return $this->percentualDeParticipacao;
-    }
+  public function setParceiro($parceiro) {
+    $this->parceiro = $parceiro;
+  }
+
+  public function setPercentualDeParticipacao($percentualDeParticipacao) {
+    $this->percentualDeParticipacao = $percentualDeParticipacao;
+  }
+
 }
-
