@@ -2,7 +2,7 @@
 
 include_once '../global.php';
 
-class Especialidade {
+class Especialidade extends persist {
 
   static $local_filename = "Especialidade.txt";
   static public function getFilename() {
