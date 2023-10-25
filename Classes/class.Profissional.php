@@ -3,12 +3,17 @@
 include_once '../global.php';
 
 class Profissional extends Pessoa {
-  
+
+  static $local_filename = "Pessoa.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
+
   protected $salario;
   protected $endereco;
   protected $cargo;
 
-  public function __construct ($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo){
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
     $this->salario = $salario;
     $this->endereco = $endereco;
@@ -39,4 +44,3 @@ class Profissional extends Pessoa {
     $this->cargo = $cargo;
   }
 }
-?>
