@@ -1,5 +1,6 @@
 <?php
-include_once("class.Orçamento.php");
+
+include_once '../global.php';
 
 class Tratamento extends Orçamento {
   

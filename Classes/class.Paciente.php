@@ -1,6 +1,6 @@
 <?php
 
-include_once("class.Pessoa.php");
+include_once '../global.php';
 
 class Paciente extends Pessoa {
     protected $tratamento;

@@ -1,5 +1,7 @@
 <?php  
 
+include_once '../global.php';
+
   class Pessoa {
 
     protected $nome;

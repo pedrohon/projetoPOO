@@ -1,8 +1,6 @@
 <?php
 
-include_once("class.Dentista.php");
-include_once("class.Paciente.php");
-include_once("class.Procedimento.php");
+include_once '../global.php';
 
 class Orcamento{
     protected int $idOrcamento;

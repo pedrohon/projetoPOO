@@ -1,5 +1,7 @@
  <?php
 
+include_once '../global.php';
+
  class FormaDePagamento{
 
  protected string $nomeFormaDePagamento;

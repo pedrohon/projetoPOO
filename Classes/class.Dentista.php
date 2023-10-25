@@ -1,5 +1,6 @@
 <?php
-require_once ('class.Profissional.php');
+
+include_once '../global.php';
 
 class Dentista extends Profissional {
 

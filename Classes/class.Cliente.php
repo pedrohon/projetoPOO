@@ -1,9 +1,9 @@
 <?php
 
-require_once ('class.Pessoa.php');
-require_once ('persist.php');
+include_once '../global.php';
 
-class Cliente extends Pessoa{
+
+class Cliente extends Pessoa {
     private $pacientes = []; //Vetor para armazenar os paciente associados ao cliente
 
     public function _construtor($nome, $rg, $telefone, $email, $cpf){

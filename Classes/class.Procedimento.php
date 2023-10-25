@@ -1,5 +1,7 @@
 <?php
 
+include_once '../global.php';
+
 class Procedimento {
     protected string $nomeDoProcedimento;
     protected string $descricaoDoProcedimento;

@@ -1,5 +1,5 @@
 <?php    
-    include_once('container.php');
+    include_once '../global.php';
     abstract class persist {
         private ?string $filename;
         private ?int $index = null; 
