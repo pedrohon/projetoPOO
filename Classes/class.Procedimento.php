@@ -2,28 +2,54 @@
 
 include_once '../global.php';
 
-class Procedimento {
-    protected string $nomeDoProcedimento;
-    protected string $descricaoDoProcedimento;
-    protected float $valorUnitario;
+class Procedimento extends persist {
 
-    public function __construct(string $nomeDoProcedimento, string $descricaoDoProcedimento, float $valorUnitario) {
-        $this->nomeDoProcedimento = $nomeDoProcedimento;
-        $this->descricaoDoProcedimento = $descricaoDoProcedimento;
-        $this->valorUnitario = $valorUnitario;
-    }
+  static $local_filename = "Procedimento.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
 
-    public function getNomeDoProcedimento() {
-        return $this->nomeDoProcedimento;
-    }
+  protected $nomeDoProcedimento;
+  protected $descricaoDoProcedimento;
+  protected $valorUnitario;
+  protected $qntDeConsultas;
 
-    public function getDescricaoDoProcedimento() {
-        return $this->descricaoDoProcedimento;
-    }
+  public function __construct($nomeDoProcedimento, $descricaoDoProcedimento, $valorUnitario, $qntDeConsultas) {
+    $this->nomeDoProcedimento = $nomeDoProcedimento;
+    $this->descricaoDoProcedimento = $descricaoDoProcedimento;
+    $this->valorUnitario = $valorUnitario;
+    $this->qntDeConsultas = $qntDeConsultas;
+  }
 
-    public function getValorUnitario() {
-        return $this->valorUnitario;
-    }
+  public function getNomeDoProcedimento() {
+    return $this->nomeDoProcedimento;
+  }
+
+  public function getDescricaoDoProcedimento() {
+    return $this->descricaoDoProcedimento;
+  }
+
+  public function getValorUnitario() {
+    return $this->valorUnitario;
+  }
+
+  public function getQntDeConsultas() {
+    return $this->qntDeConsultas;
+  }
+
+  public function setNomeDoProcedimento($nomeDoProcedimento) {
+    $this->nomeDoProcedimento = $nomeDoProcedimento;
+  }
+
+  public function setDescricaoDoProcedimento($descricaoDoProcedimento) {
+    $this->descricaoDoProcedimento = $descricaoDoProcedimento;
+  }
+
+  public function setValorUnitario($valorUnitario) {
+    $this->valorUnitario = $valorUnitario;
+  }
+
+  public function setQntDeConsultas($qntDeConsultas) {
+    $this->qntDeConsultas = $qntDeConsultas;
+  }
 }
-
-
