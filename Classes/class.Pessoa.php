@@ -2,7 +2,7 @@
 
 include_once '../global.php';
 
-class Pessoa extends persist {
+class Pessoa extends persist { 
 
   static $local_filename = "Pessoa.txt";
   static public function getFilename() {
@@ -63,3 +63,4 @@ class Pessoa extends persist {
     $this->rg = $rg;
   }
 }
+
