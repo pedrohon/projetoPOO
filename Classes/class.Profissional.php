@@ -1,6 +1,6 @@
 <?php
 
-include_once '../global.php';
+include_once '../global.php'; 
 
 class Profissional extends Pessoa {
 
@@ -44,3 +44,4 @@ class Profissional extends Pessoa {
     $this->cargo = $cargo;
   }
 }
+
