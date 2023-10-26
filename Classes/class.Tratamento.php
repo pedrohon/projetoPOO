@@ -23,4 +23,5 @@ class Tratamento extends Orcamento {
   public function setFormaDePagamento($formaDePagamento) {
     $this->formaDePagamento = $formaDePagamento;
   }
-}
+} 
+
