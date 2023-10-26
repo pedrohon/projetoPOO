@@ -17,7 +17,7 @@ class Perfil {
         return $this->id;
     }
 
-    public function getDataDeNascimento() {
+    public function getNomeDoPerfil() {
         return $this->nomeDoPerfil;
     }
 
