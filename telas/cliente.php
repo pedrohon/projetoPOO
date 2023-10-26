@@ -20,7 +20,7 @@
 <body>
     <div class="container mt-5">
         <center><h2>Cadastro de Cliente</h2></center>
-        <form action="processar_cadastro.php" method="post">
+        <form action="../cadastros/cadastroCliente.php" method="post">
             <!-- Nome -->
             <div class="form-group">
                 <label for="nome">Nome:</label>
