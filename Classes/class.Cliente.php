@@ -9,19 +9,19 @@ class Cliente extends Pessoa {
     return get_called_class()::$local_filename;
   }
 
-  protected $pagamento;
+  protected $valorTotalTratamentos;
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $pagamento) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $valorTotalTratamentos) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
-    $this->pagamento = $pagamento;
+    $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
-   public function setPagamento($pagamento) {
-    $this->pagamento = $pagamento;
+   public function setvalorTotalTratamentos($valorTotalTratamentos) {
+    $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
-  public function setPagamento($pagamento) {
-    $this->pagamento = $pagamento;
+  public function setvalorTotalTratamentos($valorTotalTratamentos) {
+    $this->valorTotalTratamentos = $valorTotalTratamentos;
 
   public function salvarCliente (){
     $this->save();
