@@ -21,7 +21,7 @@ class Perfil {
         return $this->nomeDoPerfil;
     }
 
-    public function getResponsavelFinanceiro() {
+    public function getFuncionalidades() {
         return $this->funcionalidades;
     }
 
