@@ -2,26 +2,33 @@
 
 include_once '../global.php';
 
-
 class Cliente extends Pessoa {
-    private $pacientes = []; //Vetor para armazenar os paciente associados ao cliente
 
-    public function _construtor($nome, $rg, $telefone, $email, $cpf){
-        parent::_construtor($nome, $rg, $telefone, $email, $cpf); //construtor que herda de Pessoa
-    }
+  static $local_filename = "Cliente.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
 
-    public function adicionarPaciente(Paciente $paciente){
-        $this->pacientes[] = $paciente; //um ou mais pacientes associados a um cliente
-    }
+  public function __construct($nome, $telefone, $email, $cpf, $rg) {
+    parent::__construct($nome, $telefone, $email, $cpf, $rg);
+  }
 
-    public function getPacientes(){
-        return $this->pacientes; //retorna a lista de pacientes associados a ele
-    }
+  public function salvarCliente (){
+    $this->save();
+  }
+
+  /*public function adicionarPaciente(Paciente $paciente){
+    $this->pacientes[] = $paciente; //um ou mais pacientes associados a um cliente
+  }
+
+  public function getPacientes(){
+    return $this->pacientes; //retorna a lista de pacientes associados a ele
+  }*/
 }
 
 // Receber informações do usuário para criar um Cliente
 
-echo "Cadastro de Cliente:\n";
+/*echo "Cadastro de Cliente:\n";
 $nomeCliente = (string)readLine("Nome do cliente: ");
 
 $rgCliente = (string)readLine("RG do cliente: ");
@@ -45,6 +52,5 @@ echo "Nome: " . $_cliente->nome . "\n";
 echo "RG:" . $_cliente->rg . "\n";
 echo "E-mail: " . $_cliente->email . "\n";
 echo "Telefone: " . $_cliente->telefone . "\n";
-echo "CPF: " . $_cliente->cpf . "\n";
+echo "CPF: " . $_cliente->cpf . "\n";*/
 
-?>
