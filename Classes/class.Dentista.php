@@ -12,31 +12,35 @@ class Dentista extends Profissional {
   protected $cro;
   protected $especialidade = array();
   protected $parceiro;
-  protected $percentualDeParticipacao;
+ 
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, Especialidade $especialidade, $parceiro, $percentualDeParticipacao) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, Especialidade $especialidade, $parceiro) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
+
     $this->cro = $cro;
     $this->especialidade = $especialidade;
     $this->parceiro = $parceiro;
-    $this->percentualDeParticipacao = $percentualDeParticipacao;
+    
   }
 
   public function getCro() {
     return $this->cro;
   }
 
-  public function getEspecialidade() {
+public function getEspecialidade() {
     return $this->especialidade;
-  }
+}
+
+
+public function adicionarEspecialidade(Especialidade $especialidade) {
+  $this->especialidade[] = $especialidade;
+}
+
 
   public function getParceiro() {
     return $this->parceiro;
   }
 
-  public function getPercentualDeParticipacao() {
-    return $this->percentualDeParticipacao;
-  }
 
   public function setCro($cro) {
     $this->cro = $cro;
@@ -48,10 +52,6 @@ class Dentista extends Profissional {
 
   public function setParceiro($parceiro) {
     $this->parceiro = $parceiro;
-  }
-
-  public function setPercentualDeParticipacao($percentualDeParticipacao) {
-    $this->percentualDeParticipacao = $percentualDeParticipacao;
   }
 
 }

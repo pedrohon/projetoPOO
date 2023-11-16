@@ -9,47 +9,55 @@ class Procedimento extends persist {
     return get_called_class()::$local_filename;
   }
 
+  protected $id;
   protected $nomeDoProcedimento;
-  protected $descricaoDoProcedimento;
+  protected $detalhamentoDoProcedimento;
   protected $valorUnitario;
   protected $qntDeConsultas;
+ 
 
-  public function __construct($nomeDoProcedimento, $descricaoDoProcedimento, $valorUnitario, $qntDeConsultas) {
-    $this->nomeDoProcedimento = $nomeDoProcedimento;
-    $this->descricaoDoProcedimento = $descricaoDoProcedimento;
-    $this->valorUnitario = $valorUnitario;
-    $this->qntDeConsultas = $qntDeConsultas;
+  protected static $nextId = 1;
+
+  public function __construct($nomeDoProcedimento, $detalhamentoDoProcedimento, $valorUnitario, $qntDeConsultas) {
+      $this->id = self::$nextId++;
+      $this->nomeDoProcedimento = $nomeDoProcedimento;
+      $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
+      $this->valorUnitario = $valorUnitario;
+      $this->qntDeConsultas = $qntDeConsultas;
+      
   }
 
-  public function getNomeDoProcedimento() {
-    return $this->nomeDoProcedimento;
-  }
+  
+public function getNomeDoProcedimento() {
+  return $this->nomeDoProcedimento;
+}
 
-  public function getDescricaoDoProcedimento() {
-    return $this->descricaoDoProcedimento;
-  }
+public function getDescricaoDoProcedimento() {
+  return $this->detalhamentoDoProcedimento;
+}
 
-  public function getValorUnitario() {
-    return $this->valorUnitario;
-  }
+public function getValorUnitario() {
+  return $this->valorUnitario;
+}
 
-  public function getQntDeConsultas() {
-    return $this->qntDeConsultas;
-  }
+public function getQntDeConsultas() {
+  return $this->qntDeConsultas;
+}
 
-  public function setNomeDoProcedimento($nomeDoProcedimento) {
-    $this->nomeDoProcedimento = $nomeDoProcedimento;
-  }
+public function setNomeDoProcedimento($nomeDoProcedimento) {
+  $this->nomeDoProcedimento = $nomeDoProcedimento;
+}
 
-  public function setDescricaoDoProcedimento($descricaoDoProcedimento) {
-    $this->descricaoDoProcedimento = $descricaoDoProcedimento;
-  }
+public function setDescricaoDoProcedimento($detalhamentoDoProcedimento) {
+  $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
+}
 
-  public function setValorUnitario($valorUnitario) {
-    $this->valorUnitario = $valorUnitario;
-  }
+public function setValorUnitario($valorUnitario) {
+  $this->valorUnitario = $valorUnitario;
+}
 
-  public function setQntDeConsultas($qntDeConsultas) {
-    $this->qntDeConsultas = $qntDeConsultas;
-  }
+public function setQntDeConsultas($qntDeConsultas) {
+  $this->qntDeConsultas = $qntDeConsultas;
+}
+
 }
