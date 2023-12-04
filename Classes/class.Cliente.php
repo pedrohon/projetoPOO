@@ -20,9 +20,6 @@ class Cliente extends Pessoa {
     $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
-  public function setvalorTotalTratamentos($valorTotalTratamentos) {
-    $this->valorTotalTratamentos = $valorTotalTratamentos;
-
   public function salvarCliente (){
     $this->save();
   }

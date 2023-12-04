@@ -9,12 +9,12 @@ class Procedimento extends persist {
     return get_called_class()::$local_filename;
   }
 
+  $procedimento = new $Procedimento ();
   protected $id;
   protected $nomeDoProcedimento;
   protected $detalhamentoDoProcedimento;
   protected $valorUnitario;
   protected $qntDeConsultas;
- 
 
   protected static $nextId = 1;
 
@@ -40,8 +40,21 @@ public function getValorUnitario() {
   return $this->valorUnitario;
 }
 
-public function getQntDeConsultas() {
+/*public function getQntDeConsultas() {
   return $this->qntDeConsultas;
+}*/
+
+public function calcularQtdConsultas($procedimento){
+// calcula a quantidade de consultas nececessárias para determinado procedimento
+  switch($procedimento){
+    case "Extração de dente":
+      return $qntDeConsultas = 1;
+    case "Tratamento com aparelho fixo": //mínimo de 1 ano, de 15 em 15
+      return $qntDeConsultas = 26;
+    //adicionar mais
+    default:
+      return $qntDeConsultas = 1; //mínimo de consultas
+  }
 }
 
 public function setNomeDoProcedimento($nomeDoProcedimento) {
