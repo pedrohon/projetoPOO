@@ -26,7 +26,7 @@ class RealizacaoProcedimento{
 
     //função que verifica qual foi a data da conclusão do procedimento
 
-    public function conclusaoProcedimento(Procedimento->$qntDeCosultas){
+    static public function conclusaoProcedimento(Procedimento->$qntDeCosultas){
          // Obtemos a data atual
     $dataAtual = new DateTime();
 
