@@ -3,18 +3,18 @@
 include_once("../Testes/class.pessoa.teste.php");
 
 class Perfil {
-    protected $id;
+    protected $idPerfil;
     protected $nomeDoPerfil;
     protected $funcionalidades = array();
 
-    public function __construct($id, $nomeDoPerfil, $funcionalidades) {
-        $this->id = $id;
+    public function __construct($idPerfil, $nomeDoPerfil, $funcionalidades) {
+        $this->idPerfil = $idPerfil;
         $this->nomeDoPerfil = $nomeDoPerfil;
         $this->funcionalidades = $funcionalidades;
     }
 
-    public function getId() {
-        return $this->id;
+    public function getIdPerfil() {
+        return $this->idPerfil;
     }
 
     public function getNomeDoPerfil() {
@@ -36,3 +36,13 @@ class Perfil {
         }
     }
 }
+
+//TESTE
+
+$idPerfil = 001;
+$nomeDoPerfil = "Dentista";
+$funcionalidades = [Adicionar, Remover, Alterar];
+
+$perfilTeste = new Perfil($idPerfil, );
+
+?>
