@@ -10,10 +10,11 @@ class Tratamento extends Orcamento {
   }
 
   protected $formaDePagamento;
-
-  public function __construct(Paciente $paciente, Dentista $dentista, $data, Procedimento $procedimentos, $valorTotal, $aprovacao, FormaDePagamento $formaDePagamento) {
+  protected $idTratamento;
+  public function __construct(Paciente $paciente, Dentista $dentista, $data, Procedimento $procedimentos, $valorTotal, $aprovacao, FormaDePagamento $formaDePagamento, $idTratamento) {
     parent::__construct($paciente, $dentista, $data, $procedimentos, $valorTotal, $aprovacao);
     $this->formaDePagamento = $formaDePagamento;
+    $this->idTratamento = $idTratamento;
   }
 
   public function getFormaDePagamento() {

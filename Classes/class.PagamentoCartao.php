@@ -1,5 +1,7 @@
 <?php
 
+include_once("class.RegistroDePagamento.php");
+
 class PagamentoCartao extends RegistroDePagamento{
 
 protected $modalidade; //credito ou debito
@@ -22,11 +24,11 @@ public function __construct ($formaDePagamento, $valorPago, $dataPagamento, $mod
 }
 
 private function calculaTaxa(){
-    if ($this->modalidade === 'credito') {
+    if ($this->modalidade === 'Cartão de Crédito') {
         $taxaDesconto = isset(self::$taxaParcela[$this->qtdParcelas])
             ? self::$taxaParcela[$this->qtdParcelas]
             : 0; // Sem desconto padrão
-    } elseif ($this->modalidade === 'debito') {
+    } elseif ($this->modalidade === 'Cartão de Débito') {
         $taxaDesconto = self::$taxaDebito;
     } else {
         $taxaDesconto = 0; // Sem desconto para outros tipos de cartão
@@ -49,5 +51,20 @@ public function getQtdParcelas(){
 
 }
 
+//TESTE
 
+$modalidade = "Cartão de Crédito";
+$valorPago = 500.50;
+$dataPagamento = 04/12/2023;
+$qtdParcelas = 3;
+
+$pagamentoCartao = new PagamentoCartao($modalidade, $valorPago, $dataPagamento, $qtdParcelas);
+
+//imprimindo as informações
+echo "Forma de Pagamento: " . $pagamentoCartao->getModalidade() . "<br>";
+echo "Valor Pago: " . $pagamentoCartao->getValorPago() . "<br>";
+echo "Data do Pagamento: " . $pagamentoCartao->DataTimeBr($dataPagamento) . "<br>";
+echo "Número de Parcelas: " . $pagamentoCartao->getQtdParcelas() . "<br>";
+echo "Valor da Taxa Descontada: " . $pagamentoCartao->calculaTaxa() . "<br>";
+echo "Valor do Imposto da Transação: " . $pagamentoCartao()->calculaImposto() . "<br>";
 ?>

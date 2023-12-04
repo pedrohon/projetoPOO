@@ -4,11 +4,8 @@ class RealizacaoProcedimento{
     protected $idRealizacaoProcedimento;
     protected $procedimentoRealizado;
     protected $dataConclusaoProcedimento;
-    $instanciaIdTratamneto = new Tratamento();
-    $instanciaIdProcedimento = new Procedimento();
-    $instanciaIdConsulta = new Consulta();
 
-    public function __construct($idRealizacaoProcedimento, ){
+    public function __construct(Tratamento $idTratamento, Procedimento $idProcedimento, Consulta $idConsulta, $idRealizacaoProcedimento, $procedimentoRealizado, $dataConclusaoProcedimento){
         $this->idRealizacaoProcedimento = $idRealizacaoProcedimento;
         $this->procedimentoRealizado = $procedimentoRealizado;
         $this->dataConclusaoProcedimento = $dataConclusaoProcedimento;
