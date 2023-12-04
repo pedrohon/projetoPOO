@@ -44,14 +44,27 @@ public function getValorUnitario() {
   return $this->qntDeConsultas;
 }*/
 
-public function calcularQtdConsultas($procedimento){
+public function calcularQtdConsultas(Procedimento->$procedimento){
 // calcula a quantidade de consultas nececessárias para determinado procedimento
   switch($procedimento){
     case "Extração de dente":
       return $qntDeConsultas = 1;
     case "Tratamento com aparelho fixo": //mínimo de 1 ano, de 15 em 15
       return $qntDeConsultas = 26;
-    //adicionar mais
+    case "Limpeza":
+      return $qntDeConsultas = 1;
+    case "Restauração":
+      return $qntDeConsultas = 1;
+    case "Extração Comum":
+      return $qntDeConsultas = 1;
+    case "Canal":
+      return $qntDeConsultas = 1;
+    case "Extração de Siso":
+      return $qntDeConsultas = 1;
+    case "Clareamento a laser":
+      return $qntDeConsultas = 1;
+    case "Clareamento de moldeira":
+      return $qntDeConsultas = 1;
     default:
       return $qntDeConsultas = 1; //mínimo de consultas
   }
