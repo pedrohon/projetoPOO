@@ -12,7 +12,7 @@ class Especialidade extends persist {
   protected $especialidade;
   protected $procedimento = array();
 
-  public function __construct($especialidade, Procedimento $procedimento) {
+  public function __construct($especialidade, $procedimento) {
     $this->especialidade = $especialidade;
     $this->procedimento = $procedimento;
   }
@@ -32,5 +32,5 @@ class Especialidade extends persist {
   public function setProcedimento($procedimento) {
     $this->procedimento = $procedimento;
   }
-  
+}
 }
