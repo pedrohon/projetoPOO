@@ -15,6 +15,7 @@ include_once '../global.php';
 
 // TESTE 3
 
+//cadastrando procedimentos 
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", "", 200, 1);
 
@@ -36,6 +37,7 @@ $cadastroProcedimento->cadastrarNovoProcedimento("LimpClareamento a laser", " ",
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Clareamento de moldeira", "Clareamento caseiro", 900, 1);
 
+//cadastrando especialidades
 $cadastroEspecialidade = new CadastroEspecialidade();
 $cadastroEspecialidade->cadastrarNovaEspecialidade("Clínica Geral", ["Limpeza", "Restauração", "Extração Comum"], 0.4);
 
@@ -48,8 +50,21 @@ $cadastroEspecialidade->cadastrarNovaEspecialidade("Cirurgia", ["Extração de S
 $cadastroEspecialidade = new CadastroEspecialidade();
 $cadastroEspecialidade->cadastrarNovaEspecialidade("Estética", ["Clareamento a laser", "Clareamento a moldeira"], 0.4);
 
+//cadastrando dentistas
 $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Alice", "987654321", "alice@example.com", "987.654.321-02", "7654321", 5000, "Rua ABC", "Dentista", "12345", [" Clínica Geral", "Endodontia", "Cirurgia"], false);
 
 $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 5000, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
+
+//cadastrando cliente e paciente
+
+//agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
+
+//após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
+
+//agendada uma consulta para realização de cada procedimento o após a consulta de avaliação e posterior aprovação do orçamento.
+
+// paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
+
+//cálculo do resultado financeiro da clínica no mês de novembro/202
