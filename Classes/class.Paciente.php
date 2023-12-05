@@ -65,6 +65,38 @@ class Paciente extends Pessoa {
   }
 
   public function salvarPaciente (){
-    $this->save();
+    $pacienteExistente = Paciente::buscarPaciente($this->cpf);
+
+    if (!$pacienteExistente) {
+      $this->save();
+      echo '\n Paciente cadastrado com sucesso!\n';
+    } 
+    else {
+      echo "\nPaciente já cadastrado!\n";
+    }
   }
+
+  static public function getPacientes(){
+    $pacientes = Paciente::getRecords();
+    
+    foreach ($pacientes as $paciente) {
+      $paciente->printMe();
+    }
+  }
+
+
+  static public function buscarPaciente($cpf){
+    try{
+      $pacienteBuscado = Paciente::getRecordsByField( "cpf", $cpf );
+      if (empty($pacienteBuscado)) {
+        return 0;
+      } else {
+        return $pacienteBuscado[0];
+      }
+    }
+    catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
 }
