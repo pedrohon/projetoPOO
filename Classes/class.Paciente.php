@@ -9,7 +9,7 @@ class Paciente extends Pessoa {
     return get_called_class()::$local_filename;
   }
 
-  protected $tratamento;
+  protected $tratamento = array();
   protected $responsavelFinanceiro;
   protected $dataDeNascimento;
 
@@ -32,8 +32,16 @@ class Paciente extends Pessoa {
     return $this->responsavelFinanceiro;
   }
 
-  public function setTratamento($tratamento) {
-    $this->tratamento = $tratamento;
+  public function adicionarTratamento(Tratamento $tratamento) {
+    $this->tratamento[] = $tratamento;
+  }
+
+  public function valorTotalTratamentos() {
+    $valorTotal = 0;
+    foreach ($this->tratamento as $tratamento) {
+      $valorTotal += $tratamento->getValorTotal();
+    }
+    return $valorTotal;
   }
 
   public function setDataDeNascimento($dataDeNascimento) {
@@ -42,6 +50,18 @@ class Paciente extends Pessoa {
 
   public function setResponsavelFinanceiro($responsavelFinanceiro) {
     $this->responsavelFinanceiro = $responsavelFinanceiro;
+  }
+
+  public function printMe() {
+    echo "\nInformações do Paciente:\n";
+    echo "------------------------\n";
+    echo "Nome: " . $this->nome . "\n";
+    echo "Telefone: " . $this->telefone . "\n";
+    echo "Email: " . $this->email . "\n";
+    echo "CPF: " . $this->cpf . "\n";
+    echo "RG: " . $this->rg . "\n";
+    echo "Tratamento: " . $this->tratamento . "\n";
+    echo "Data de Nascimento: " . $this->dataDeNascimento . "\n";
   }
 
   public function salvarPaciente (){
