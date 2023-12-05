@@ -23,8 +23,11 @@ class Cliente extends Pessoa {
 
     if (!$clienteExistente) {
       $this->save();
-    } else {
-      echo "\nCliente já cadastrado!\n";
+      echo '\n Cliente cadastrado com sucesso!\n';
+    } 
+    
+    else {
+      echo '\nCliente já cadastrado!\n';
     }
   }
   
@@ -67,8 +70,20 @@ class Cliente extends Pessoa {
     }
   }
 
-  public function adicionarPaciente(Paciente $paciente){
-    $this->pacientes[] = $paciente;
+  public function adicionarPaciente(Cliente $cliente, Paciente $paciente){
+    $clientes = Cliente::getRecords();
+    //print_r($clientes);
+    $posicao = array_search($cliente, $clientes, false) <=> 0;
+    
+    echo $posicao;
+    
+    if($posicao !== false){
+      unset($clientes[$posicao]);
+      $this->save();
+    }
+    else{
+      $this->save();
+    }
   }
 
   public function getPacientes($pacientes){

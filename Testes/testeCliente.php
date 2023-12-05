@@ -1,7 +1,7 @@
 <?php
 
 require_once '../classes/class.Cliente.php';
-
+/*
     $cliente1 = new Cliente("Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9", 0);
     $cliente2 = new Cliente("Maria", "(11) 98765-4321", "maria@email.com", "987.654.321-00", "11.223.334-5", 0);
     $cliente3 = new Cliente("João", "(13) 98765-4321", "joao@email.com", "111.222.333-44", "55.666.777-8", 0);
@@ -15,5 +15,5 @@ require_once '../classes/class.Cliente.php';
     $cliente4 -> salvarCliente();
     $cliente5 -> salvarCliente();
     $cliente6 -> salvarCliente();
-
+*/
     Cliente::getClientes();
