@@ -72,15 +72,15 @@ class Orcamento extends persist {
   public function setAprovacao($aprovacao) {
       $this->aprovacao = $aprovacao;
   }
-
+/*
   public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
     $this->Procedimentos[] = [
-        'Procedimento' => $nomeDoProcedimento;
-        'Descricao' => $detalhamentoDoProcedimento;
+        'Procedimento' => $nomeDoProcedimento,
+        'Descricao' => $detalhamentoDoProcedimento
     ];
     $this->calcularValorTotal();
 }
-
+*/
 public function calcularValorTotal(){
     $this->valorTotal = 0;
     foreach ($this->Procedimentos as $item){

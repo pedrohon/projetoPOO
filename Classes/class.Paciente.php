@@ -36,14 +36,6 @@ class Paciente extends Pessoa {
     $this->tratamento[] = $tratamento;
   }
 
-  public function valorTotalTratamentos() {
-    $valorTotal = 0;
-    foreach ($this->tratamento as $tratamento) {
-      $valorTotal += $tratamento->getValorTotal();
-    }
-    return $valorTotal;
-  }
-
   public function setDataDeNascimento($dataDeNascimento) {
     $this->dataDeNascimento = $dataDeNascimento;
   }
@@ -62,6 +54,10 @@ class Paciente extends Pessoa {
     echo "RG: " . $this->rg . "\n";
     echo "Tratamento: " . $this->tratamento . "\n";
     echo "Data de Nascimento: " . $this->dataDeNascimento . "\n";
+    echo "------------------------\n";
+    echo "\nResponsável Financeiro: ";
+    echo "\n------------------------";
+    echo $this->responsavelFinanceiro->printMe() . "\n";
   }
 
   public function salvarPaciente (){
@@ -69,7 +65,7 @@ class Paciente extends Pessoa {
 
     if (!$pacienteExistente) {
       $this->save();
-      echo '\n Paciente cadastrado com sucesso!\n';
+      echo "\n Paciente cadastrado com sucesso!\n";
     } 
     else {
       echo "\nPaciente já cadastrado!\n";
