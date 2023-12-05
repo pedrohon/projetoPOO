@@ -1,3 +1,7 @@
+<?php
+
+include_once '../global.php';
+
 class CadastroEspecialidade {
   
   public function cadastrarNovaEspecialidade($especialidade, $procedimento) {
