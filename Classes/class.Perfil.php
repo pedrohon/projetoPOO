@@ -25,11 +25,11 @@ class Perfil {
         return $this->funcionalidades;
     }
 
-    public function adicionarFuncionalidades() {
+    public function adicionarFuncionalidades(Funcionalidade $funcionalidade) {
         $this->funcionalidades[] = $funcionalidade;
     }
 
-    public function removerFuncionalidades() {
+    public function removerFuncionalidades(Funcionalidade $funcionalidade) {
         $key = array_search($funcionalidade, $this->funcionalidades);
         if ($key !== false){
           unset($this->funcionalidades[$key]);
@@ -41,8 +41,22 @@ class Perfil {
 
 $idPerfil = 001;
 $nomeDoPerfil = "Dentista";
-$funcionalidades = [Adicionar, Remover, Alterar];
 
-$perfilTeste = new Perfil($idPerfil, );
+$funcionalidades = new Funcionalidade($nomeDoMetodo);
+
+$nomeDoMetodo = ["Adicionar", "Remover", "Alterar"];
+
+$perfilTeste = new Perfil($idPerfil, $nomeDoPerfil, $funcionalidades);
+
+echo "Nome do Perfil: " . $perfilTeste->getNomeDoPerfil() . "<br>";
+echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
+
+$perfilTeste->adicionarFuncionalidades(Funcionalidade [$nomeDoMetodo = "Cadastrar Especialidades"]);
+
+echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
+
+$funcionalidades = removerFuncionalidades(Funcionalidade [$nomeDoMetodo = "Alterar"]);
+
+echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
 
 ?>

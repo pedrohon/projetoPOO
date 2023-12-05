@@ -1,15 +1,15 @@
 <?php
 
+include_once("class.FormaDePagamento.php")
+
 class RegistroDePagamento{
 
     //falta fazer uma lógica para aceitar mais de uma forma de pgmt
 
-$tratamento = new Tratamento ($idTratamento);
-$formaDePagamento = new FormaDePagamento($nomeFormaDePagamento);
 protected $valorPago;
 protected $dataPagamento;
 
-public function __construct ($idTratamento, $valorPago, $dataPagamento, $nomeFormaDePagamento){
+public function __construct ($valorPago, $dataPagamento, $nomeFormaDePagamento){
     $this->valorPago = $valorPago;
     $this->dataPagamento = $this->DateTimeBr($dataPagamento);
 }
@@ -33,6 +33,7 @@ public function DateTimeBr($dataPagamento){
 public function getValorPago(){
     return $this->valorPago;
 }
+
 }
 
 ?>
