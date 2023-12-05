@@ -14,3 +14,7 @@ class CadastroProfissional {
     }
   }
 }
+
+//para usar 
+//$cadastroProfissional = new CadastroProfissional();
+//$cadastroProfissional->cadastrarNovoProfissional("João Silva", "123456789", "joao@example.com", "123.456.789-01", "1234567", 5000, "Rua XYZ", "Desenvolvedor");
