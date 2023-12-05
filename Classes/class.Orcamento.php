@@ -73,7 +73,7 @@ class Orcamento extends persist {
       $this->aprovacao = $aprovacao;
   }
 
-  /*public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
+  public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
     $this->Procedimentos[] = [
         'Procedimento' => $nomeDoProcedimento;
         'Descricao' => $detalhamentoDoProcedimento;
@@ -95,5 +95,6 @@ public function aprovarOrcamento($aprovacaoPaciente){
     } else{
         return null;
     }
-}*/
+}
+
 }

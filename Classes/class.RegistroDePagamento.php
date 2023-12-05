@@ -1,7 +1,5 @@
 <?php
 
-include_once("class.FormaDePagamento.php")
-
 class RegistroDePagamento{
 
     //falta fazer uma lógica para aceitar mais de uma forma de pgmt
