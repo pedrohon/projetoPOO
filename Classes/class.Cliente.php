@@ -10,54 +10,79 @@ class Cliente extends Pessoa {
   }
 
   protected $valorTotalTratamentos;
+  protected $pacientes = array();
 
   public function __construct($nome, $telefone, $email, $cpf, $rg, $valorTotalTratamentos) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
     $this->valorTotalTratamentos = $valorTotalTratamentos;
-  }
 
-   public function setvalorTotalTratamentos($valorTotalTratamentos) {
-    $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
   public function salvarCliente (){
-    $this->save();
+    $clienteExistente = Cliente::buscarCliente($this->cpf);
+
+    if (!$clienteExistente) {
+      $this->save();
+    } else {
+      echo "\nCliente já cadastrado!\n";
+    }
+  }
+  
+  public function getValorTotalTratamentos() {
+      return $this->valorTotalTratamentos;
+  }
+  
+  public function setValorTotalTratamentos() {
+    $valorTotalTratamentos = 0;
+    foreach ($this->pacientes as $paciente) {
+      $valorTotalTratamentos += $paciente->valorTotalTratamentos();
+    }
+    $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
-  /*public function adicionarPaciente(Paciente $paciente){
-    $this->pacientes[] = $paciente; //um ou mais pacientes associados a um cliente
+  public function printMe() {
+    echo "\nInformações do Cliente:\n";
+    echo "------------------------\n";
+    echo "Nome: "                       . $this->nome . "\n";
+    echo "Telefone: "                   . $this->telefone . "\n";
+    echo "Email: "                      . $this->email . "\n";
+    echo "CPF: "                        . $this->cpf . "\n";
+    echo "RG: "                         . $this->rg . "\n";
+    echo "Valor Total de Tratamentos: " . $this->valorTotalTratamentos . "\n";
+    echo "Clientes Associados: \n";
+    $this->getPacientes($this->pacientes);
   }
 
-  public function getPacientes(){
-    return $this->pacientes; //retorna a lista de pacientes associados a ele
-  }*/
+  static public function buscarCliente($cpf){
+    try{
+      $clienteBuscado = Cliente::getRecordsByField( "cpf", $cpf );
+      if (empty($clienteBuscado)) {
+        return 0;
+      } else {
+        return $clienteBuscado[0];
+      }
+    }
+    catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function adicionarPaciente(Paciente $paciente){
+    $this->pacientes[] = $paciente;
+  }
+
+  public function getPacientes($pacientes){
+    foreach ($pacientes as $paciente) {
+      $paciente->printMe();
+    }
+  }
+
+  static public function getClientes(){
+    $clientes = Cliente::getRecords();
+    
+    foreach ($clientes as $cliente) {
+      $cliente->printMe();
+    }
+  }
+
 }
-
-// Receber informações do usuário para criar um Cliente
-
-/*echo "Cadastro de Cliente:\n";
-$nomeCliente = (string)readLine("Nome do cliente: ");
-
-$rgCliente = (string)readLine("RG do cliente: ");
-
-$emailCliente = (string)readLine("E-mail do cliente: ");
-
-$telefoneCliente = (string)readLine("Telefone do cliente: ");
-
-$cpfCliente = (string)readLine("CPF do cliente: ");
-
-$_cliente = new Cliente($nomeCliente, $rgCliente, $emailCliente, $telefoneCliente, $cpfCliente);
-
-//associando paciente ao cliente
-
-$_cliente->adicionarPaciente($_paciente);
-
-//imprimindo as informações de cliente
-
-echo "\n Ficha informacional do Cliente\n";
-echo "Nome: " . $_cliente->nome . "\n";
-echo "RG:" . $_cliente->rg . "\n";
-echo "E-mail: " . $_cliente->email . "\n";
-echo "Telefone: " . $_cliente->telefone . "\n";
-echo "CPF: " . $_cliente->cpf . "\n";*/
-
