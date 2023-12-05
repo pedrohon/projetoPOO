@@ -88,10 +88,10 @@ public function calcularValorTotal(){
     }
 }
 
-public function aprovarOrcamento($aprovacaoPaciente){
+public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
     if($this->aprovacaoPaciente !== null) {
-        $tratamento = new Tratamento();
-        return $tratamento;
+        $cadastroTratamento = new CadastroTratamento();
+        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,$formaDePagamento);
     } else{
         return null;
     }
