@@ -3,8 +3,7 @@
 include_once '../global.php'; 
 
 class Profissional extends Pessoa {
-
-  static $local_filename = "Pessoa.txt";
+  static $local_filename = "Profissional.txt";
   static public function getFilename() {
     return get_called_class()::$local_filename;
   }
@@ -43,5 +42,8 @@ class Profissional extends Pessoa {
   public function setCargo($cargo) {
     $this->cargo = $cargo;
   }
-}
 
+  public function salvarProfissional () {
+    $this->save();
+  }
+}
