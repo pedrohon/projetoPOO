@@ -54,4 +54,8 @@ public function adicionarEspecialidade(Especialidade $especialidade) {
     $this->parceiro = $parceiro;
   }
 
+  public function salvarDentista () {
+    $this->save();
+  }
+
 }
