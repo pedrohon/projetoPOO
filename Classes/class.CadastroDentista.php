@@ -16,6 +16,9 @@ class CadastroDentista {
       $novoDentista->salvarDentista();
       echo "Dentista cadastrado com sucesso!";
     }
-    
   }
 }
+
+//para usar 
+//$cadastroDentista = new CadastroDentista();
+//$cadastroDentista->cadastrarNovoDentista("Ana Silva", "987654321", "ana@example.com", "987.654.321-02", "7654321", 7000, "Rua ABC", "Ortodontista", "12345", ["Ortodontia", "Implantodontia"], true);
