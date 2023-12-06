@@ -14,7 +14,7 @@ class Dentista extends Profissional {
   protected $parceiro;
  
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, Especialidade $especialidade, $parceiro) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
 
     $this->cro = $cro;

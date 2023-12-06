@@ -14,10 +14,8 @@ include_once '../global.php';
 // outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
 
 // TESTE 3
-
-//cadastrando procedimentos 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", "", 200, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
 
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Restauração", "", 185, 1);
@@ -58,8 +56,14 @@ $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 5000, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
 
 //cadastrando cliente e paciente
+// Criar Cliente
+
+
+// Criar Paciente
+
 
 //agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
+
 
 //após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
 

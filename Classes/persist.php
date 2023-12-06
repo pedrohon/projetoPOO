@@ -1,5 +1,5 @@
 <?php    
-    include_once '../global.php';
+    include_once '../global.php'; 
     abstract class persist {
         private ?string $filename;
         private ?int $index = null; 
@@ -58,10 +58,10 @@
                     array_push( $matchObjects, $objs[$i] );
                 }               
             }
-            //if ( count($matchObjects) > 0 )
+            if ( count($matchObjects) > 0 )
                 return $matchObjects;
-            //else
-            //    throw( new Exception('Registro não encontrado.'));
+            else
+                throw( new Exception('Registro não encontrado.'));
         }
 
         static public function getRecords() {            
