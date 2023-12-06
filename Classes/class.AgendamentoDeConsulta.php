@@ -34,7 +34,7 @@ class AgendamentoDeConsulta {
 
     public function getqntDeConsultas(){
      return $this->qntDeConsultas;
-   }
+    }
 
     public function setDentistaExecutor($dentistaExecutor) {
         $this->dentistaExecutor = $dentistaExecutor;
@@ -56,28 +56,27 @@ class AgendamentoDeConsulta {
       $this->qntDeConsultas=$qntDeConsultas;
     }
 
-
-
     public function agendarConsulta(Orcamento $orcamento) {
       // Verifica se o orçamento foi aprovado
       return $orcamento->aprovado();
-  }
+    }   
 
-  public function criarConsultasAutomaticamente(Orcamento $orcamento) {
-      // Verifica se o orçamento foi aprovado antes de criar a consulta
-      if ($this->agendarConsulta($orcamento)) {
-          for ($i = 0; $i < $this->qntDeConsultas; $i++) {
-              $consulta = new Consulta("dia 5", "drt joao");
-              $this->adicionarConsulta($consulta);
-              if($consulta instanceof Consulta) {
+    public function criarConsultasAutomaticamente(Orcamento $orcamento) {
+        // Verifica se o orçamento foi aprovado antes de criar a consulta
+        if ($this->agendarConsulta($orcamento)) {
+            for ($i = 0; $i < $this->qntDeConsultas; $i++) {
+                $consulta = new Consulta("dia 5", "drt joao");
+                $this->adicionarConsulta($consulta);
+                if($consulta instanceof Consulta) {
                 echo "\nConsulta instanciada\n";
             }
-          }
-      }
-  }
-  public function adicionarConsulta(Consulta $consulta) {
-    $this->consultas[] = $consulta;
-     } 
-
+            }
+        }
     }
+
+    public function adicionarConsulta(Consulta $consulta) {
+        $this->consultas[] = $consulta;
+    } 
+
+}
     

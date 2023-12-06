@@ -16,7 +16,7 @@ class Orcamento extends persist {
   protected $valorTotal;
   protected $aprovacao;
 
-  public function __construct(Paciente $paciente, Dentista $dentista, $data, Procedimento $procedimentos, $valorTotal, $aprovacao) {
+  public function __construct(Paciente $paciente, Dentista $dentista, $data, array $procedimentos, $valorTotal, $aprovacao) {
     $this->paciente = $paciente;
     $this->dentista = $dentista;
     $this->data = $data;
@@ -83,13 +83,13 @@ class Orcamento extends persist {
 */
 public function calcularValorTotal(){
     $this->valorTotal = 0;
-    foreach ($this->Procedimentos as $item){
+    foreach ($this->procedimentos as $item){
         $this->valorTotal += $item['Procedimento']->valorUnitario;
     }
 }
 
 public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
-    if($this->aprovacaoPaciente !== null) {
+    if($aprovacaoPaciente !== null) {
         $cadastroTratamento = new CadastroTratamento();
         $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,$formaDePagamento);
     } else{
