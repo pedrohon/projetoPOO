@@ -16,7 +16,7 @@ class Especialidade extends persist {
   public function __construct($especialidade, $procedimento, $percentualDeParticipacao) {
     $this->especialidade = $especialidade;
     $this->procedimento = $procedimento;
-    $this->percentualDeParticipacao = $percentualDeParticipacao
+    $this->percentualDeParticipacao = $percentualDeParticipacao;
   }
 
   public function getEspecialidade() {
@@ -42,5 +42,4 @@ class Especialidade extends persist {
   public function setpercentualDeParticipacao($percentualDeParticipacao) {
     $this->percentualDeParticipacao = $percentualDeParticipacao;
   }
-}
 }

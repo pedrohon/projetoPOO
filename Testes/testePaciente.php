@@ -1,8 +1,6 @@
 <?php
 
-require_once '../classes/class.Cliente.php';
-require_once '../classes/class.Paciente.php';
-require_once '../classes/class.Tratamento.php';
+include_once '../global.php';
 
     // Criar Cliente
     $cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
