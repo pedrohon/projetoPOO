@@ -10,7 +10,8 @@ class CadastroProfissional {
     catch (Exception $e) {
       $novoProfissional = new Profissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
       $novoProfissional->salvarProfissional();
-      echo "Profissional cadastrado com sucesso!";
+      echo "Profissional cadastrado com sucesso!\n";
+
     }
   }
 }

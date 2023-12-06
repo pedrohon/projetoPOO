@@ -20,10 +20,8 @@ class Orcamento extends persist {
     $this->paciente = $paciente;
     $this->dentista = $dentista;
     $this->data = $data;
-    $this->procedimentos = $procedimentos;
-    $this->valorTotal = $valorTotal;
-    $this->aprovacao = $aprovacao;
   }
+
 
   public function getPaciente() {
     return $this->paciente;
@@ -81,6 +79,7 @@ class Orcamento extends persist {
     $this->calcularValorTotal();
 }
 */
+
 public function calcularValorTotal(){
     $this->valorTotal = 0;
     foreach ($this->procedimentos as $item){
@@ -89,9 +88,11 @@ public function calcularValorTotal(){
 }
 
 public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
+
     if($aprovacaoPaciente !== null) {
         $cadastroTratamento = new CadastroTratamento();
-        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,$formaDePagamento);
+        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,FormaDePagamento $nomeFormaDePagamento);
+
     } else{
         return null;
     }

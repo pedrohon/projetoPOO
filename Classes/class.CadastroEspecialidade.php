@@ -12,7 +12,8 @@ class CadastroEspecialidade {
     catch (Exception $e) {
       $novaEspecialidade = new Especialidade($especialidade, $procedimento, $percentualDeParticipacao);
       $novaEspecialidade->save();
-      echo "Especialidade cadastrada com sucesso!";
+      echo "Especialidade cadastrada com sucesso!\n";
+
     }
   }
 }

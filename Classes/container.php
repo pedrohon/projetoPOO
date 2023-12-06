@@ -1,5 +1,5 @@
 <?php
-    include_once '../global.php';
+    include_once '../global.php'; 
     class container {
         private string $folder = 'dataFiles';
         private string $filename;
@@ -89,6 +89,4 @@
         public function __wakeup(){
             
         }
-
-       
     }

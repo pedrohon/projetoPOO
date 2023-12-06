@@ -15,9 +15,9 @@ include_once '../global.php';
 
 // TESTE 3
 
-//cadastrando procedimentos 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", "", 200, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
+
 
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Restauração", "", 185, 1);
@@ -59,7 +59,15 @@ $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.c
 
 //cadastrando cliente e paciente
 
+// Criar Cliente
+
+
+// Criar Paciente
+
+
 //agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
+
+
 
 //após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
 
@@ -67,4 +75,6 @@ $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.c
 
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
 
-//cálculo do resultado financeiro da clínica no mês de novembro/202
+
+//cálculo do resultado financeiro da clínica no mês de novembro/2023
+

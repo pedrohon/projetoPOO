@@ -13,7 +13,9 @@ class Especialidade extends persist {
   protected $procedimento = array();
   protected $percentualDeParticipacao;
 
+
   public function __construct($especialidade, array $procedimento, $percentualDeParticipacao) {
+
     $this->especialidade = $especialidade;
     $this->procedimento = $procedimento;
     $this->percentualDeParticipacao = $percentualDeParticipacao;
