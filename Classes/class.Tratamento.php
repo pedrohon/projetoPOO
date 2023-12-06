@@ -10,22 +10,17 @@ class Tratamento extends Orcamento {
   }
 
 
-    protected $formaDePagamento;
-    protected $idTratamento;
     protected $valorFaturado;
     protected $taxaDoCartao;
     protected $impostos;
     protected $receita;
+    protected $formaDePagamento;
 
-    public function __construct(Paciente $paciente, Dentista $dentista, $data, Procedimento $procedimentos, $valorTotal, $aprovacao, FormaDePagamento $formaDePagamento, $idTratamento,$valorFaturado,$taxaDoCartao,$impostos,$receita) {
+    public function __construct(Paciente $paciente, $dentista, $data, $procedimentos, $valorTotal, $aprovacao, $formaDePagamento) {
         parent::__construct($paciente, $dentista, $data, $procedimentos, $valorTotal, $aprovacao);
 
         $this->formaDePagamento = $formaDePagamento;
-        $this->idTratamento = $idTratamento;
-        $this->valorFaturado = $valorFaturado;
-        $this->taxaDoCartao = $taxaDoCartao;
-        $this->impostos = $impostos;
-        $this->receita = $receita;
+        
     }
 
   public function getFormaDePagamento() {
@@ -59,7 +54,9 @@ class Tratamento extends Orcamento {
       $this->valorFaturado = $valorFaturado;
   }
 
-  public function setImpostos($impostos) {
+}
+
+/*  public function setImpostos($impostos) {
     $this->impostos = $impostos;
 }
 
@@ -84,4 +81,4 @@ class Tratamento extends Orcamento {
 
         return $this->receita;
     }
-}
+}*/

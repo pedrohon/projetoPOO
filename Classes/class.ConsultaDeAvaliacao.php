@@ -45,8 +45,6 @@ class ConsultaDeAvaliacao extends persist {
       $valor = $x[0]->getValorUnitario();
       $valorTotal = $valorTotal + $valor;
     }
-    
-    $orcamento = new Orcamento(this->$paciente, this->$dentista, this->$data, $procedimentos, $valorTotal);
   }
 
   public function getPaciente() {

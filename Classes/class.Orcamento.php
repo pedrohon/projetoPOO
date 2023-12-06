@@ -16,7 +16,7 @@ class Orcamento extends persist {
   protected $valorTotal;
   protected $aprovacao;
 
-  public function __construct(Paciente $paciente, Dentista $dentista, $data, array $procedimentos, $valorTotal) {
+  public function __construct(Paciente $paciente, $dentista, $data, array $procedimentos, $valorTotal) {
     $this->paciente = $paciente;
     $this->dentista = $dentista;
     $this->data = $data;
@@ -82,20 +82,25 @@ class Orcamento extends persist {
   }
   */
 
-  public function calcularValorTotal(){
-      $this->valorTotal = 0;
-      }
-
-
-  public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
-
-      if($aprovacaoPaciente !== null) {
-          $cadastroTratamento = new CadastroTratamento();
-          $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,FormaDePagamento $nomeFormaDePagamento);
-
-      } else{
-          return null;
-      }
+  static public function calcularValorTotal($procedimentos){
+    
+    $valorTotal = 0;
+    foreach ($procedimentos as $procedimento) {
+      $objeto = Procedimento::getRecordsByField( "nomeDoProcedimento", $procedimento); 
+      $valorUnitario = $objeto[0]->getValorUnitario();
+      $valorTotal = $valorTotal + $valorUnitario;
+    }
+    return $valorTotal;
   }
 
+
+  public function aprovarOrcamento($formaDePagamento){
+
+    $this->aprovacao = true;
+    $cadastroTratamento = new Tratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao, $formaDePagamento);
+    $cadastroTratamento->save();
+    echo ("Orçamento aprovado e tratamento gerado");
+}
+
+  
 }

@@ -45,7 +45,3 @@ class Especialidade extends persist {
     $this->percentualDeParticipacao = $percentualDeParticipacao;
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> febdc7d518719e6a37abc26909ac792e263d37c6
