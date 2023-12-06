@@ -1,4 +1,6 @@
 <?php
+include_once("class.Usuario.php");
+
 //teste realizado com suceso
 //foi verificado que dois usuários não podem ser criados na mesma instancia
 
