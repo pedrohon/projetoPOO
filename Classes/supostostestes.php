@@ -14,7 +14,6 @@ include_once '../global.php';
 // outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
 
 // TESTE 3
-
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
 
