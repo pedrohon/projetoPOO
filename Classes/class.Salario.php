@@ -5,7 +5,6 @@ include_once '../global.php';
 
 class Salario {
 
-
   public static function calculaParticipacao ($cro, $Procedimento, $especialidade, $dataDoSalario) {
 
     $objetoespecialidade = Especialidade::getRecordsByField("especialidade", $especialidade);
