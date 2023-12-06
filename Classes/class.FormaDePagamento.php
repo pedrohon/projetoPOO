@@ -10,26 +10,16 @@ class FormaDePagamento extends persist {
   }
 
   protected $nomeFormaDePagamento;
-  protected $quantidadeDeParcelas;
 
-  public function __construct($nomeFormaDePagamento,$quantidadeDeParcelas) {
-    $this->nomeFormaDePagamento=$nomeFormaDePagamento;
-    $this->quantidadeDeParcelas=$quantidadeDeParcelas;
+  public function __construct($nomeFormaDePagamento) {
+    $this->nomeFormaDePagamento = $nomeFormaDePagamento;
   }
 
   public function getNomeFormaDePagamento() {
     return $this->nomeFormaDePagamento;
   }
   
-  public function getQuantidadeDeParcelas() {
-    return $this->quantidadeDeParcelas;
-  }
-
   public function setNomeFormaDePagamento($nomeFormaDePagamento) {
     $this->nomeFormaDePagamento = $nomeFormaDePagamento;
   }
-
-  public function setQuantidadeDeParcelas($quantidadeDeParcelas){
-    $this->quantidadeDeParcelas = $quantidadeDeParcelas;
   }
-}
