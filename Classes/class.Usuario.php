@@ -15,9 +15,10 @@ class Usuario extends persist{
   private static $instancia;
   private $logado = false;
 
-  public function __construct($login, $senha){
+  public function __construct($login, $senha, Perfil $perfilDoUsuario){
     $this->login = $login;
     $this->senha = $senha;
+    $this->perfilDoUsuario = $perfilDoUsuario;
   }
 
   public static function getInstancia($login, $senha){
@@ -89,7 +90,7 @@ class Usuario extends persist{
       echo "-----------------------\n";
       echo "Login: "                       . $this->login . "\n";
       echo "Senha: "                       . $this->senha . "\n";
-      echo "Perfil do Usuário: "           . $this->perfilDoUsuario . "\n";
+      echo "Perfil do Usuário: "           . $this->perfilDoUsuario->getNomeDoPerfil() . "\n";
     }
 
 }

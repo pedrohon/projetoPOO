@@ -25,12 +25,11 @@ $perfil2->salvarPerfil();
 
 Perfil::getPerfil();
 
-/*
+
 // teste usuário
-$usuario = new Usuario("admin", "admin");
-$usuario = new Usuario("admin", "admin");
-$usuario = new Usuario("pedro", "pedro");
+$usuario = new Usuario("admin", "admin", $perfil1);
+$usuario = new Usuario("admin", "admin", $perfil1);
+$usuario = new Usuario("pedro", "pedro", $perfil2);
 $usuario->salvarUsuario();
 
 Usuario::getUsuarios();
-*/
