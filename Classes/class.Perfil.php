@@ -20,6 +20,15 @@ class Perfil extends persist{
         return $this->nomeDoPerfil;
     }
 
+    public function verificaFuncionalidade($nomeDoMetodo){
+        foreach ($this->funcionalidades as $funcionalidade) {
+            if($funcionalidade->getNomeDoMetodo() == $nomeDoMetodo){
+                return true;            
+            }
+        }
+        return false;
+    }
+
     public function setNomeDoPerfil($nomeDoPerfil){
         $this->nomeDoPerfil = $nomeDoPerfil;
     }

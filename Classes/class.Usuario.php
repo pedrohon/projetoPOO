@@ -22,10 +22,10 @@ class Usuario extends persist{
   }
 
   public static function getInstancia($login, $senha){
-    if (!self::$instancia){
+    if (!self::$instancia || (self::$instancia->login != $login && self::$instancia->logado == false)){
         $funcionalidade           = new Funcionalidade("Tentativa de Login");
         $funcionalidadeGenerica   = [$funcionalidade];
-        $perfilGenerico           = new Perfil("Administrador", $funcionalidadeGenerica);
+        $perfilGenerico           = new Perfil("SupostoUsuario", $funcionalidadeGenerica);
         
         self::$instancia = new Usuario($login, $senha, $perfilGenerico);
     }
@@ -74,13 +74,17 @@ class Usuario extends persist{
         
         elseif(!$usuario){
             echo "\nUsuário não encontrado.\n\n";
-            self::$instancia = null;
+            self::$instancia->usuario = null;
+            self::$instancia->senha = null;
+            self::$instancia->perfilDoUsuario = null;
             return null;
         }
         
         elseif(!$this->verificaCredenciais($this->login, $senha)){
             throw new Exception("Falha no login. Credenciais incorretas.\n\n");
-            self::$instancia = null;
+            $this->usuario = null;
+            $this->senha = null;
+            $this->perfilDoUsuario = null;
         }
         echo "Login realizado com sucesso! \n Olá, $login.\n\n";
         $this->logado = true;

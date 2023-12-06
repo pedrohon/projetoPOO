@@ -2,43 +2,83 @@
 
 include_once '../global.php';
 
-// TESTE 1 
-
+echo "\n ---------------- cadastro de algumas funcionalidades, perfis e usuarios para uso no usuario ------------------- \n\n";
 $funcionalidade1 = new Funcionalidade("Cadastro Dentista");
 $funcionalidade2 = new Funcionalidade("Cadastro Especialidade");
 $funcionalidade3 = new Funcionalidade("Cadastro Orcamento");
+$funcionalidade4 = new Funcionalidade("Cadastro Cliente");
+$funcionalidade5 = new Funcionalidade("Cadastro Procedimento");
 $funcionalidade1->salvarFuncionalidade();
 $funcionalidade2->salvarFuncionalidade();
 $funcionalidade3->salvarFuncionalidade();
+$funcionalidade4->salvarFuncionalidade();
+$funcionalidade5->salvarFuncionalidade();
 
-$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3];
-$funcionalidesDentista = [$funcionalidade2, $funcionalidade3];
+$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3, $funcionalidade4, $funcionalidade5];
+$funcionalidesDentista = [$funcionalidade2, $funcionalidade3, $funcionalidade4];
 $perfil1 = new Perfil("Administrador", $funcionalidadesAdmin);
 $perfil2 = new Perfil("Dentista", $funcionalidesDentista);
 $perfil1->salvarPerfil();
 $perfil2->salvarPerfil();
 
-$usuario1 = new Usuario("admin", "admin", $perfil1);
-$usuario2 = new Usuario("pedro", "pedro", $perfil2);
+$usuarioAdmin    = new Usuario("admin", "admin", $perfil1);
+$usuarioDentista = new Usuario("pedro", "senha", $perfil2);
+$usuarioAdmin->salvarUsuario();
+$usuarioDentista->salvarUsuario();
+echo "\n ----------------------------------------------------------------------------------------------------------------- \n";
 
-$usuario = Usuario::getInstancia("pedro", "pedro");
-$usuario->salvarUsuario();
+echo "\n\tTESTE 1\n"; 
+echo "\ttentar acessar uma funcionalidade qualquer sem que se tenha realizado login de usuário\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
-$usuario->realizaLogin();
-
+$usuario1 = Usuario::getInstancia("admin", "admin");
 $cadastroCliente = new CadastroCliente();
-$cadastroCliente->cadastrarNovoCliente($usuario, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
-// tentar acessar uma funcionalidade qualquer sem que se tenha realizado login de usuário
+$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
+echo "\n ----------------------------------------------------------------------------------------------------------------- \n";
 
-// TESTE 2
 
-// usuário previamente cadastrado e com perfil de acesso a todas as funcionalidades, exceto Cadastrar Procedimento, deve fazer o login no sistema com sucesso para iniciar os testes
+echo "\n\tTESTE 2\n"; 
+echo "\tusuário previamente cadastrado e com perfil de acesso a todas as funcionalidades, exceto Cadastrar Procedimento,\n";
+echo "\tdeve fazer o login no sistema com sucesso para iniciar os testes\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n";
+
+$usuario1 = Usuario::getInstancia("pedro", "senha");
+$usuario1->realizaLogin();
+$cadastroProcedimento = new CadastroProcedimento();
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração Comum", "Não inclui dente siso.", 280, 1);
+
+/* ele conseguiria cadastrar um Cliente
+$cadastroCliente = new CadastroCliente();
+$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
+*/
+
+/*
+
+
+//$usuario1 = new Usuario("admin", "admin", $perfil1);
+//$usuario2 = new Usuario("pedro", "pedro", $perfil2);
+//$usuario1->salvarUsuario();
+//$usuario2->salvarUsuario();
+
+
+$usuario1->realizaLogout();
+$usuario1->realizaLogin();
+
+
+*/
+
+
+
+
+/*
+
+
+
 // tente realizar o cadastro de um Procedimento com este usuário e comprove que o controle de acesso funciona satisfatoriamente
 // em seguida faça o logout deste usuário
 // outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
 
 // TESTE 3
-/*
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
 
@@ -164,4 +204,5 @@ $orcamento->save();
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
 
 
-//cálculo do resultado financeiro da clínica no mês de novembro/2023*/
+//cálculo do resultado financeiro da clínica no mês de novembro/2023
+*/
