@@ -4,7 +4,7 @@ include_once("class.RegistroDePagamento.php");
 
 class PagamentoCartao extends RegistroDePagamento{
 
-protected $modalidade; //credito ou debito
+protected $nomeFormaDePagamento; //credito ou debito
 protected $qtdParcelas;
 protected static $taxaParcela = [
     1 => 4,
@@ -16,19 +16,20 @@ protected static $taxaParcela = [
 ];
 protected static $taxaDebito = 3;
 
-public function __construct ($formaDePagamento, $valorPago, $dataPagamento, $modalidade, $qtdParcelas){
-    parent::__construct($formaDePagamento, $valorPago, $dataPagamento);
-    $this->modalidade = $modalidade;
+public function __construct (FormaDePagamento $nomeFormaDePagamento, $valorPago, $dataPagamento, $qtdParcelas, $taxaParcela, $taxaDebito){
+    parent::__construct($nomeFormaDePagamento, $valorPago, $dataPagamento);
+    $this->nomeFormaDePagamento = $nomeFormaDePagamento;
     $this->qtdParcelas = $qtdParcelas;
-    $this->calculaTaxa();
+    $this->taxaParcela = $taxaParcela;
+    $this->$taxaDebito = $taxaDebito;
 }
 
 private function calculaTaxa(){
-    if ($this->modalidade === 'Cartão de Crédito') {
+    if ($this->nomeFormaDePagamento === 'Cartão de Crédito') {
         $taxaDesconto = isset(self::$taxaParcela[$this->qtdParcelas])
             ? self::$taxaParcela[$this->qtdParcelas]
             : 0; // Sem desconto padrão
-    } elseif ($this->modalidade === 'Cartão de Débito') {
+    } elseif ($this->nomeFormaDePagamento === 'Cartão de Débito') {
         $taxaDesconto = self::$taxaDebito;
     } else {
         $taxaDesconto = 0; // Sem desconto para outros tipos de cartão
@@ -41,16 +42,8 @@ private function calculaTaxa(){
     $this->valorPago -= $desconto;
 }
 
-public function getModalidade(){
-    return $this->modalidade;
-}
-
 public function getQtdParcelas(){
     return $this->qtdParcelas;
-}
-
-public function setModalidade($modalidade){
-    $this->modalidade = $modalidade;
 }
 
 public function setQtdParcelas($qtdParcelas){
@@ -61,7 +54,7 @@ public function setQtdParcelas($qtdParcelas){
 
 //TESTE
 
-$pgmTeste = new PagamentoCartao($modalidade, $qtdParcelas);
+/*$pgmTeste = new PagamentoCartao($modalidade, $qtdParcelas);
 
 $registro = new RegistroDePagamento ($valorPago, $dataPagamento);
 
@@ -77,6 +70,6 @@ echo "O Valor Pago foi de: R$" . $registro->getValorPago() . "<br>";
 
 echo "O valor de Taxa da transação é de: R$" . $desconto->calculaTaxa() . "<br>";
 echo "O valor recebido pela clínica é de: R$" . $valorPago->calculaTaxa() . "<br>";
-echo "O valor de Imposto pago pela transação é de: R$" . $registro->calculaImposto() . "<br>";
+echo "O valor de Imposto pago pela transação é de: R$" . $registro->calculaImposto() . "<br>";*/
 
 ?>

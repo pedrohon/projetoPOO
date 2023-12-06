@@ -9,21 +9,13 @@ class Perfil extends persist{
   static public function getFilename() {
     return get_called_class()::$local_filename;
   }
-
-    protected $idPerfil;
     protected $nomeDoPerfil;
     protected $funcionalidades = array();
 
-    public function __construct($idPerfil, $nomeDoPerfil, $funcionalidades) {
-        $this->idPerfil = $idPerfil;
+    public function __construct($nomeDoPerfil, $funcionalidades) {
         $this->nomeDoPerfil = $nomeDoPerfil;
         $this->funcionalidades = $funcionalidades;
     }
-
-    public function getIdPerfil() {
-        return $this->idPerfil;
-    }
-
     public function getNomeDoPerfil() {
         return $this->nomeDoPerfil;
     }
@@ -49,29 +41,52 @@ class Perfil extends persist{
           unset($this->funcionalidades[$key]);
         }
     }
+
+    public function salvarPerfil (){
+        $perfilExistente = Perfil::buscarPerfil($this->nomeDoPerfil);
+    
+        if (!$perfilExistente) {
+          $this->save();
+          echo "\n Perfil cadastrado com sucesso!\n";
+        } 
+        
+        else {
+          echo "\nPerfil já cadastrado!\n";
+        }
+  }
+  
+    static public function buscarPerfil($nomeDoPerfil){
+            try{
+            $perfilBuscado = perfil::getRecordsByField( "nomeDoPerfil", $nomeDoPerfil );
+            if (empty($perfilBuscado)) {
+                return 0;
+            } else {
+                return $perfilBuscado[0];
+            }
+            }
+            catch (Exception $e) {
+            echo $e->getMessage();
+            }
+        }
+    
+    //Apenas para fins de testes
+    static public function getPerfil(){
+        $perfis = Perfil::getRecords();
+        
+        foreach ($perfis as $perfil) {
+        $perfil->printMe();
+        }
+    }
+
+    public function printMe() {
+        echo "\nInformações do Perfil:\n";
+        echo "------------------------\n";
+        echo "Nome do Perfil: "                                 . $this->nomeDoPerfil . "\n";
+        echo "Funcionalidades do Perfil: \n";
+        foreach ($this->funcionalidades as $i => $funcionalidade) {
+            echo "\t" . $i+1 . " - ";
+            echo $funcionalidade->getNomeDoMetodo() . "\n";
+        }
+    }
 }
-
-//TESTE
-
-$idPerfil = 001;
-$nomeDoPerfil = "Dentista";
-
-$metodos = new Funcionalidade($nomeDoMetodo);
-
-$nomeDoMetodo = ["Adicionar", "Remover", "Alterar"];
-
-$perfilTeste = new Perfil($idPerfil, $nomeDoPerfil, $funcionalidades);
-
-echo "Nome do Perfil: " . $perfilTeste->getNomeDoPerfil() . "<br>";
-echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
-
-$perfilTeste->adicionarFuncionalidades(Funcionalidade [$nomeDoMetodo = "Cadastrar Especialidades"]);
-$perfilTeste->adicionarFuncionalidades($funcionalidades->$metodos);
-
-echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
-
-$perfilTeste->removerFuncionalidades(Funcionalidade [$nomeDoMetodo = "Alterar"]);
-
-echo "Funcionalidades do Perfil: " . $perfilTeste->getFuncionalidades() . "<br>";
-
 ?>

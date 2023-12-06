@@ -1,6 +1,11 @@
 <?php
 
-class RealizacaoProcedimento{
+class RealizacaoProcedimento extends persist{
+
+    static $local_filename = "RealizacaoProcedimento.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
     protected $idRealizacaoProcedimento;
     protected $procedimentoRealizado;
     protected $dataConclusaoProcedimento;
@@ -10,45 +15,50 @@ class RealizacaoProcedimento{
         $this->procedimentoRealizado = $procedimentoRealizado;
         $this->dataConclusaoProcedimento = $dataConclusaoProcedimento;
     }
+    
+    public function acessarDataDaConsulta(AgendamentoDeConsulta $dataDaConsulta){
+        $dataDaConsulta->getDataDaConsulta();
+    }
 
-    //função que identifica a realização do procedimento
+    public function verificaRealizacaoProcedimento($dataDaConsulta){
+        $dataAtual = new DateTime();
 
-    public function verificacaoProcedimento ($procedimentoRealizado){
-        if($this->procedimentoRealizado !== null){
+        $dataConsulta = DateTime::createFromFormat('d/m/Y', $dataDaConsulta);
+
+        if($dataConsulta < $dataAtual){
+            echo "A consulta na data $dataDaConsulta já foi realizada.\n";
             return true;
         } else{
-            return false;
+            echo "A consulta na data $dataDaConsulta ainda será realizada.\n";
         }
     }
-    
-    //função para converter quantidade de consultas em dias
-    public function conersaoConsultas(Procedimento $qntDeConsultas){
-        return $qntDeConsultas * 7;
+
+    public function acessarQtdConsultas(Procedimento $qtdDeConsultas){
+        $qtdDeConsultas->getQntDeConsultas();
     }
 
     //função que verifica qual foi a data da conclusão do procedimento
 
-    static public function conclusaoProcedimento(Procedimento $qntDeConsultas){
-         // Obtemos a data atual
-    $dataAtual = new DateTime();
+    public function calcularDataConclusaoProcedimento($dataDaConsulta, $qtdDeConsultas) {
+    // Converter a data da consulta para o formato DateTime
+    $dataConsulta = DateTime::createFromFormat('d/m/Y', $dataDaConsulta);
 
-    // Adicionamos o número de dias ao objeto de data
-    $dataFinal = $dataAtual->add(new DateInterval('P' . $qntDeConsultas . 'D'));
+    // Calcular o intervalo de dias
+    $intervaloDias = $qtdDeConsultas * 7;
+    
+    // Adicionar o intervalo à data da consulta
+    $dataConclusaoProcedimento = $dataConsulta->add(new DateInterval("P{$intervaloDias}D"));
 
-    // Verificamos se a data resultante é um dia útil (de segunda a sexta-feira)
-    $diaDaSemana = $dataFinal->format('N');
-    $ehDiaUtil = $diaDaSemana >= 1 && $diaDaSemana <= 5;
-
-    // Verificamos se a data final é igual ou superior à data atual
-    $dataAtual = new DateTime();
-    $dataConclusaoProcedimento = $dataAtual >= $dataFinal;
-
-    return [
-        'data' => $dataFinal->format('Y-m-d'),
-        'ehDiaUtil' => $ehDiaUtil,
-        'acabouProcedimento' => $dataConclusaoProcedimento,
-    ];
+    // Verificar se a data de conclusão cai em um final de semana
+    if ($dataConclusaoProcedimento->format('N') >= 6) {
+        // Se for sábado (6) ou domingo (7), ajustar para o próximo dia útil
+        $diasParaProximoDiaUtil = 8 - $dataConclusaoProcedimento->format('N'); // Calcula os dias necessários para o próximo dia útil
+        $dataConclusaoProcedimento->add(new DateInterval("P{$diasParaProximoDiaUtil}D"));
     }
+
+    // Retornar a data de conclusão formatada no formato d/m/Y
+    return $dataConclusaoProcedimento->format('d/m/Y');
+}
 
 }
 ?>

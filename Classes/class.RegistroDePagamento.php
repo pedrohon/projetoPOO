@@ -9,36 +9,18 @@ class RegistroDePagamento extends persist {
     return get_called_class()::$local_filename;
   }
 
-  protected $tratamento;
-  protected $formaDePagamento;
-  protected $parcelas;
   protected $valorPago;
   protected $dataPagamento;
+  protected $tratamento;
 
-  public function __construct($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
-    $this->tratamento = $tratamento;
-    $this->formaDePagamento = $formaDePagamento;
-    $this->parcelas = $parcelas;
+  public function __construct($valorPago, $dataPagamento, Tratamento $tratamento) {
     $this->valorPago = $valorPago;
     $this->dataPagamento = $dataPagamento;
+    $this->tratamento = $tratamento;
   }
 
-  static public function RegistrarPagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
-    $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
-    $novoRegistro->save();
-    echo ("Pagamento registrado\n");
-  }
-
-  public function getTratamento() {
-    return $this->tratamento;
-  }
-
-  public function getFormaDePagamento() {
-    return $this->formaDePagamento;
-  }
-
-  public function getParcelas() {
-    return $this->parcelas;
+  public function acessarFormaDePagamento(FormaDePagamento $nomeFormaDePagamento){
+    $nomeFormaDePagamento = getNomeFormaDePagamento();//pq nao vai?
   }
 
   public function getValorPago() {
@@ -48,18 +30,6 @@ class RegistroDePagamento extends persist {
   public function getDataPagamento() {
     return $this->dataPagamento;
   }
-
-  public function setTratamento($tratamento) {
-    $this->tratamento = $tratamento;
-  }
-
-  public function setFormaDePagamento($formaDePagamento) {
-    $this->formaDePagamento = $formaDePagamento;
-  }
-
-  public function setParcelas($parcelas) {
-    $this->parcelas = $parcelas;
-  }
  
   public function setValorPago($valorPago) {
     $this->valorPago = $valorPago;
@@ -67,6 +37,12 @@ class RegistroDePagamento extends persist {
 
   public function setDataPagamento($dataPagamento) {
     $this->dataPagamento = $dataPagamento;
+  }
+
+  public function RegistrarPagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
+    $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
+    $novoRegistro->save();
+    echo ("Pagamento registrado\n");
   }
 
   public function salvarRegistroDePagamento () {
@@ -89,6 +65,7 @@ public function DateTimeBr($dataPagamento){
     }
     return $dataObjeto;
 }
+
 }
 
 
