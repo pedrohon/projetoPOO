@@ -23,6 +23,12 @@ class RegistroDePagamento extends persist {
     $this->dataPagamento = $dataPagamento;
   }
 
+  static public function RegistrarPagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
+    $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
+    $novoRegistro->save();
+    echo ("Pagamento registrado\n");
+  }
+
   public function getTratamento() {
     return $this->tratamento;
   }

@@ -71,11 +71,17 @@ $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 //após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
 $cadastroOrcamento = new CadastroOrcamento();
 $orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
-$orcamento->aprovarOrcamento("Cartão de crédito");
+$tratamento = $orcamento->aprovarOrcamento("Cartão de crédito");
 
 //agendada uma consulta para realização de cada procedimento o após a consulta de avaliação e posterior aprovação do orçamento.
 
+
+
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
+$valorPago = ($tratamento->getValorTotal())/2;
+
+RegistroDePagamento::RegistrarPagamento($tratamento, "PIX", 1, $valorPago, "2023-12-06 07:23:00");
+RegistroDePagamento::RegistrarPagamento($tratamento, "Cartão de crédito", 3, $valorPago, "2023-12-06 07:24:00");
 
 //cálculo do resultado financeiro da clínica no mês de novembro/2023
 

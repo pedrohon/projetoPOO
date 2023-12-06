@@ -99,7 +99,9 @@ class Orcamento extends persist {
     $this->aprovacao = true;
     $cadastroTratamento = new Tratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao, $formaDePagamento);
     $cadastroTratamento->save();
-    echo ("Orçamento aprovado e tratamento gerado");
+    echo ("Orçamento aprovado e tratamento gerado\n");
+
+    return $cadastroTratamento;
 }
 
   
