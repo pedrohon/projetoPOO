@@ -1,5 +1,6 @@
 <?php    
     include_once '../global.php';
+
     abstract class persist {
         private ?string $filename;
         private ?int $index = null; 

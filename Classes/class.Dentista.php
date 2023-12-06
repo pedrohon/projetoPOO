@@ -14,7 +14,7 @@ class Dentista extends Profissional {
   protected $parceiro;
  
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, Especialidade $especialidade, $parceiro) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, array $especialidade, $parceiro) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
 
     $this->cro = $cro;
@@ -33,7 +33,7 @@ public function getEspecialidade() {
 
 
 public function adicionarEspecialidade(Especialidade $especialidade) {
-  $this->especialidade[] = $especialidade;
+  array_push($this->especialidade, $especialidade);
 }
 
 
@@ -46,12 +46,16 @@ public function adicionarEspecialidade(Especialidade $especialidade) {
     $this->cro = $cro;
   }
 
-  public function setEspecializacao($especialidade) {
+  public function setEspecializacao(array $especialidade) {
     $this->especialidade = $especialidade;
   }
 
   public function setParceiro($parceiro) {
     $this->parceiro = $parceiro;
+  }
+
+  public function salvarDentista () {
+    $this->save();
   }
 
 }

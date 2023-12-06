@@ -9,12 +9,10 @@ class Cliente extends Pessoa {
     return get_called_class()::$local_filename;
   }
 
-  protected $valorTotalTratamentos;
   protected $pacientes = array();
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $valorTotalTratamentos) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
-    $this->valorTotalTratamentos = $valorTotalTratamentos;
 
   }
 
@@ -23,21 +21,12 @@ class Cliente extends Pessoa {
 
     if (!$clienteExistente) {
       $this->save();
-    } else {
+      echo "\n Cliente cadastrado com sucesso!\n";
+    } 
+    
+    else {
       echo "\nCliente já cadastrado!\n";
     }
-  }
-  
-  public function getValorTotalTratamentos() {
-      return $this->valorTotalTratamentos;
-  }
-  
-  public function setValorTotalTratamentos() {
-    $valorTotalTratamentos = 0;
-    foreach ($this->pacientes as $paciente) {
-      $valorTotalTratamentos += $paciente->valorTotalTratamentos();
-    }
-    $this->valorTotalTratamentos = $valorTotalTratamentos;
   }
 
   public function printMe() {
@@ -48,9 +37,6 @@ class Cliente extends Pessoa {
     echo "Email: "                      . $this->email . "\n";
     echo "CPF: "                        . $this->cpf . "\n";
     echo "RG: "                         . $this->rg . "\n";
-    echo "Valor Total de Tratamentos: " . $this->valorTotalTratamentos . "\n";
-    echo "Clientes Associados: \n";
-    $this->getPacientes($this->pacientes);
   }
 
   static public function buscarCliente($cpf){
@@ -67,11 +53,26 @@ class Cliente extends Pessoa {
     }
   }
 
-  public function adicionarPaciente(Paciente $paciente){
-    $this->pacientes[] = $paciente;
+  public function adicionarPaciente(Cliente $cliente, Paciente $paciente){
+    $clientes = Cliente::getRecords();
+    //print_r($clientes);
+    $posicao = array_search($cliente, $clientes, false) <=> 0;
+    
+    if($posicao !== false){
+      unset($clientes[$posicao]);
+      $this->save();
+    }
+    else{
+      $this->save();
+    }
   }
 
-  public function getPacientes($pacientes){
+  public function getPacientes(){
+    return $this->pacientes;
+  }
+
+  public function listaPacientes($pacientes){
+    echo "\nPacientes Associados: \n";
     foreach ($pacientes as $paciente) {
       $paciente->printMe();
     }

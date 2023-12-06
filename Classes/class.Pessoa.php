@@ -1,6 +1,7 @@
 <?php
 
 include_once '../global.php';
+// include_once 'persist.php';
 
 class Pessoa extends persist { 
 
@@ -64,3 +65,4 @@ class Pessoa extends persist {
   }
 }
 
+?>

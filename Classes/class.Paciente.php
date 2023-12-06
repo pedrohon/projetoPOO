@@ -36,14 +36,6 @@ class Paciente extends Pessoa {
     $this->tratamento[] = $tratamento;
   }
 
-  public function valorTotalTratamentos() {
-    $valorTotal = 0;
-    foreach ($this->tratamento as $tratamento) {
-      $valorTotal += $tratamento->getValorTotal();
-    }
-    return $valorTotal;
-  }
-
   public function setDataDeNascimento($dataDeNascimento) {
     $this->dataDeNascimento = $dataDeNascimento;
   }
@@ -62,9 +54,45 @@ class Paciente extends Pessoa {
     echo "RG: " . $this->rg . "\n";
     echo "Tratamento: " . $this->tratamento . "\n";
     echo "Data de Nascimento: " . $this->dataDeNascimento . "\n";
+    echo "------------------------\n";
+    echo "\nResponsável Financeiro: ";
+    echo "\n------------------------";
+    echo $this->responsavelFinanceiro->printMe() . "\n";
   }
 
   public function salvarPaciente (){
-    $this->save();
+    $pacienteExistente = Paciente::buscarPaciente($this->cpf);
+
+    if (!$pacienteExistente) {
+      $this->save();
+      echo "\n Paciente cadastrado com sucesso!\n";
+    } 
+    else {
+      echo "\nPaciente já cadastrado!\n";
+    }
   }
+
+  static public function getPacientes(){
+    $pacientes = Paciente::getRecords();
+    
+    foreach ($pacientes as $paciente) {
+      $paciente->printMe();
+    }
+  }
+
+
+  static public function buscarPaciente($cpf){
+    try{
+      $pacienteBuscado = Paciente::getRecordsByField( "cpf", $cpf );
+      if (empty($pacienteBuscado)) {
+        return 0;
+      } else {
+        return $pacienteBuscado[0];
+      }
+    }
+    catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
 }

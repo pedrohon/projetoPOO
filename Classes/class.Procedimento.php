@@ -9,7 +9,6 @@ class Procedimento extends persist {
     return get_called_class()::$local_filename;
   }
 
-  $procedimento = new $Procedimento ();
   protected $id;
   protected $nomeDoProcedimento;
   protected $detalhamentoDoProcedimento;
@@ -44,7 +43,7 @@ public function getValorUnitario() {
   return $this->qntDeConsultas;
 }*/
 
-public function calcularQtdConsultas(Procedimento->$procedimento){
+public function calcularQtdConsultas($procedimento){
 // calcula a quantidade de consultas nececessárias para determinado procedimento
   switch($procedimento){
     case "Extração de dente":
