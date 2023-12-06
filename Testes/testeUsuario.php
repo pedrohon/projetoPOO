@@ -1,7 +1,7 @@
 <?php
 
 include_once '../global.php';
-
+/*
 // teste funcionalidade
 $funcionalidade1 = new Funcionalidade("Cadastro Dentista");
 $funcionalidade2 = new Funcionalidade("Cadastro Especialidade");
@@ -27,9 +27,27 @@ Perfil::getPerfil();
 
 
 // teste usuário
-$usuario = new Usuario("admin", "admin", $perfil1);
-$usuario = new Usuario("admin", "admin", $perfil1);
-$usuario = new Usuario("pedro", "pedro", $perfil2);
-$usuario->salvarUsuario();
+usuario1 = new Usuario("admin", "admin", $perfil1);
+$usuario1 = new Usuario("admin", "admin", $perfil1);
+$usuario2 = new Usuario("pedro", "pedro", $perfil2);
+$usuario1->salvarUsuario();
+$usuario2->salvarUsuario();
 
 Usuario::getUsuarios();
+*/
+
+$usuario = Usuario::getInstancia("pedro", "pedro");
+$usuario->realizaLogin();
+
+$usuario = Usuario::getInstancia("admin", "admin");
+$usuario->realizaLogin();
+
+$usuario = Usuario::getInstancia("pedro", "pedro");
+$usuario->realizaLogin();
+
+$usuario->realizaLogin();
+
+$usuario->realizaLogout();
+
+$usuario = Usuario::getInstancia("admin", "admin");
+$usuario->realizaLogin();

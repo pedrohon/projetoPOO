@@ -23,22 +23,66 @@ class Usuario extends persist{
 
   public static function getInstancia($login, $senha){
     if (!self::$instancia){
-        self::$instancia = new Usuario($login, $senha);
+        $funcionalidade           = new Funcionalidade("Tentativa de Login");
+        $funcionalidadeGenerica   = [$funcionalidade];
+        $perfilGenerico           = new Perfil("Administrador", $funcionalidadeGenerica);
+        
+        self::$instancia = new Usuario($login, $senha, $perfilGenerico);
     }
     return self::$instancia;
   }
 
-  public function realizaLogin($login, $senha){
+  public function verificaCredenciais($login, $senha){
     try{
-        if($this->logado){
-            throw new Exception("Já existe um usuário logado.\n");
+      $usuarioExistente = Usuario::getRecordsByField( "login", $login );
+      
+      if(!$usuarioExistente){
+        echo 'Usuario não encontrado.';
+        return false;
+      }
+
+      else{
+        $loginComparado = $usuarioExistente[0]->getLogin();
+        $senhaComparada = $usuarioExistente[0]->getSenha();
+
+        if($loginComparado == $login && $senhaComparada == $senha){
+          return true;
         }
-        if($login == $this->login && $senha == $this->senha){
-            echo "Login realizado com sucesso! Olá, $login.\n";
-            $this->logado = true;
-        }else {
-            throw new Exception("Falha no login. Credencial não encontrada.\n");
+        else{
+          return false;
         }
+      }
+    }
+
+    catch (Exception $e) {
+      echo $e->getMessage();
+  
+    }
+  }
+
+  public function realizaLogin(){
+    try{
+        $login = $this->login;
+        $senha = $this->senha;
+
+        $usuario = Usuario::buscarUsuario($login);
+
+        if(!$usuario){
+            echo "\nUsuário não encontrado.\n\n";
+            return null;
+        }
+
+        elseif($this->logado){
+            throw new Exception("Já existe um usuário logado.\n\n");
+        }
+
+        elseif(!$this->verificaCredenciais($this->login, $senha)){
+            throw new Exception("Falha no login. Credenciais incorretas.\n\n");
+        }
+        echo "Login realizado com sucesso! \n Olá, $login.\n\n";
+        $this->logado = true;
+
+        
     } catch (Exception $e){
         echo "Erro: " . $e->getMessage();
     }
@@ -46,7 +90,8 @@ class Usuario extends persist{
 
     public function realizaLogout(){
         $this->logado = false;
-        echo "Logout realizado com sucesso.\n";
+        self::$instancia = null;
+        echo "Logout realizado com sucesso.\n\n";
     }
 
     public function salvarUsuario (){
@@ -54,11 +99,11 @@ class Usuario extends persist{
   
       if (!$usuarioExistente) {
         $this->save();
-        echo "\n Usuário cadastrado com sucesso!\n";
+        echo "\n Usuário cadastrado com sucesso!\n\n";
       } 
       
       else {
-        echo "\nUsuário já cadastrado!\n";
+        echo "\nUsuário já cadastrado!\n\n";
       }
     }
 
@@ -75,6 +120,19 @@ class Usuario extends persist{
         echo $e->getMessage();
       }
     }
+
+    public function getLogin(){
+      return $this->login;
+    }
+
+    public function getSenha(){
+      return $this->senha;
+    }
+
+    public function getPerfilDoUsuario(){
+      return $this->perfilDoUsuario;
+    }
+    
 
   //Apenas para fins de testes
     static public function getUsuarios(){
