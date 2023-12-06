@@ -39,7 +39,7 @@ Usuario::getUsuarios();
 $usuario = Usuario::getInstancia("pedro", "pedro");
 $usuario->realizaLogin();
 
-$usuario = Usuario::getInstancia("admin", "admin");
+$usuario = Usuario::getInstancia("admn", "admin");
 $usuario->realizaLogin();
 
 $usuario = Usuario::getInstancia("pedro", "pedro");
@@ -48,6 +48,9 @@ $usuario->realizaLogin();
 $usuario->realizaLogin();
 
 $usuario->realizaLogout();
+
+$usuario = Usuario::getInstancia("admn", "admin");
+$usuario->realizaLogin();
 
 $usuario = Usuario::getInstancia("admin", "admin");
 $usuario->realizaLogin();

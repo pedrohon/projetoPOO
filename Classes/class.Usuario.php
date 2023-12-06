@@ -67,17 +67,20 @@ class Usuario extends persist{
 
         $usuario = Usuario::buscarUsuario($login);
 
-        if(!$usuario){
+        
+        if($this->logado){
+          throw new Exception("Já existe um usuário logado.\n\n");
+        }
+        
+        elseif(!$usuario){
             echo "\nUsuário não encontrado.\n\n";
+            self::$instancia = null;
             return null;
         }
-
-        elseif($this->logado){
-            throw new Exception("Já existe um usuário logado.\n\n");
-        }
-
+        
         elseif(!$this->verificaCredenciais($this->login, $senha)){
             throw new Exception("Falha no login. Credenciais incorretas.\n\n");
+            self::$instancia = null;
         }
         echo "Login realizado com sucesso! \n Olá, $login.\n\n";
         $this->logado = true;
