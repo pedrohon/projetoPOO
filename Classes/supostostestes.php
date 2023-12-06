@@ -57,7 +57,32 @@ $cadastroDentista->cadastrarNovoDentista("Alice", "987654321", "alice@example.co
 $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 5000, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
 
-//cadastrando cliente e paciente
+//cadastro do cliente e do paciente 
+ $cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
+ $cliente -> salvarCliente();
+ 
+ $paciente = new Paciente("Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "Limpeza", "1997-12-10", $cliente);
+ $paciente -> salvarPaciente();
+
+//agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
+$novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao("123.456.789-10", "54321", "2023-11-06 14:00:00");
+$novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
+ConsultaDeAvaliacao::gerarOrcamento(["Limpeza","Clareamento a laser","Restauração"]);
+
+
+
+//após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
+
+//agendada uma consulta para realização de cada procedimento o após a consulta de avaliação e posterior aprovação do orçamento.
+
+// paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
+
+//cálculo do resultado financeiro da clínica no mês de novembro/2023
+
+
+
+
+/*//cadastrando cliente e paciente
 $cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 $cliente -> salvarCliente();
 

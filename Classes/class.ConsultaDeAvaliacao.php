@@ -36,7 +36,7 @@ class ConsultaDeAvaliacao extends persist {
     echo ("Consulta de avaliação foi realizada\n");
   }
 
-  static public function gerarOrcamento ($paciente, $dentista, $data, $procedimentos) {
+  static public function gerarOrcamento ($procedimentos) {
 
     $valorTotal = 0;
 
@@ -46,7 +46,7 @@ class ConsultaDeAvaliacao extends persist {
       $valorTotal = $valorTotal + $valor;
     }
     
-    $orcamento = new Orcamento($paciente, $dentista, $data, $procedimentos, $valorTotal);
+    $orcamento = new Orcamento(this->$paciente, this->$dentista, this->$data, $procedimentos, $valorTotal);
   }
 
   public function getPaciente() {
