@@ -29,13 +29,13 @@ class Usuario extends persist{
   public function realizaLogin($login, $senha){
     try{
         if($this->logado){
-            throw new Exception("Já existe um usuário logado.");
+            throw new Exception("Já existe um usuário logado.\n");
         }
         if($login == $this->login && $senha == $this->senha){
-            echo "Login realizado com sucesso! Olá, $login.";
+            echo "Login realizado com sucesso! Olá, $login.\n";
             $this->logado = true;
         }else {
-            throw new Exception("Falha no login. Credencial não encontrada.");
+            throw new Exception("Falha no login. Credencial não encontrada.\n");
         }
     } catch (Exception $e){
         echo "Erro: " . $e->getMessage();
@@ -44,25 +44,9 @@ class Usuario extends persist{
 
     public function realizaLogout(){
         $this->logado = false;
-        echo "Logout realizado com sucesso.";
+        echo "Logout realizado com sucesso.\n";
     }
 
   }
-
-  //TESTE
-
-  $jujubs = Usuario::getInstancia("jujubs", "julia1018");
-  $jujubs->realizaLogin("jujubs", "julia1018");
-
-  //tentando entrar com um segundo usuário
-  $usuario2 = Usuario::getInstancia("usuario2", "senha123");
-  $usuario2->realizaLogin("usuario2", "senha123");
-
-  //logout
-  $jujubs->realizaLogout();
-
-  //entrando com outro usuário
-  $usuario2 = Usuario::getInstancia("usuario2", "senha123");
-  $usuario2->realizaLogin("usuario2", "senha123");
 
 ?>
