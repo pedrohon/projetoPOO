@@ -37,9 +37,9 @@ class Orcamento extends persist {
     return $this->data;
   }
 
-  public function getProcedimentos() {
+  /*public function getProcedimentos() {
     return $this->procedimentos;
-  }
+  }*/
 
   public function getValorTotal() {
     return $this->valorTotal;
@@ -75,10 +75,9 @@ class Orcamento extends persist {
 
   public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
     $this->Procedimentos[] = [
-        'Procedimento' => $nomeDoProcedimento;
-        'Descricao' => $detalhamentoDoProcedimento;
+        'Procedimento' => $nomeDoProcedimento,
+        'Descricao' => $detalhamentoDoProcedimento
     ];
-    $this->calcularValorTotal();
 }
 
 public function calcularValorTotal(){
