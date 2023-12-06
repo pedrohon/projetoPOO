@@ -39,7 +39,7 @@ class Habilitacao extends persist {
     $this->procedimento = $procedimento;
   }
 
-  public function verificaHabilitacao(Dentista $dentista, Procedimento $procedimento) {
+  static public function verificaHabilitacao(Dentista $dentista, Procedimento $procedimento) {
     $especialidades = $dentista->getEspecialidade();
     $nomeDoProcedimento = $procedimento->getNomeDoProcedimento();
 
