@@ -11,12 +11,14 @@ class RegistroDePagamento extends persist {
 
   protected $tratamento;
   protected $formaDePagamento;
+  protected $parcelas;
   protected $valorPago;
   protected $dataPagamento;
 
-  public function __construct($tratamento, $formaDePagamento, $valorPago, $dataPagamento) {
+  public function __construct($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
     $this->tratamento = $tratamento;
     $this->formaDePagamento = $formaDePagamento;
+    $this->parcelas = $parcelas;
     $this->valorPago = $valorPago;
     $this->dataPagamento = $dataPagamento;
   }
@@ -27,6 +29,10 @@ class RegistroDePagamento extends persist {
 
   public function getFormaDePagamento() {
     return $this->formaDePagamento;
+  }
+
+  public function getParcelas() {
+    return $this->parcelas;
   }
 
   public function getValorPago() {
@@ -43,6 +49,10 @@ class RegistroDePagamento extends persist {
 
   public function setFormaDePagamento($formaDePagamento) {
     $this->formaDePagamento = $formaDePagamento;
+  }
+
+  public function setParcelas($parcelas) {
+    $this->parcelas = $parcelas;
   }
  
   public function setValorPago($valorPago) {

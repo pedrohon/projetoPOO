@@ -31,29 +31,16 @@ class Habilitacao extends persist {
     return $this->procedimento;
   }
 
+  /*
+  public function setIdHabilitacao($idHabilitacao) {
+    $this->idHabilitacao = $idHabilitacao;
+  }*/
+
   public function setDentista($dentista) {
     $this->dentista = $dentistar;
   }
 
   public function setProcedimento($procedimento) {
     $this->procedimento = $procedimento;
-  }
-
-  static public function verificaHabilitacao(Dentista $dentista, Procedimento $procedimento) {
-    $especialidades = $dentista->getEspecialidade();
-    $nomeDoProcedimento = $procedimento->getNomeDoProcedimento();
-
-    foreach ($especialidades as $especialidade) {
-      $procedimentos = $especialidade->getProcedimento();
-      foreach ($procedimentos as $procedimento) {
-        if ($procedimento->getNomeDoProcedimento() == $nomeDoProcedimento)
-        {
-          return true;
-        }
-        else{
-          return false;
-        }
-      }
-    }
   }
 }

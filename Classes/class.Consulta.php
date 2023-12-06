@@ -72,4 +72,8 @@ class Consulta extends persist {
     else 
       return null;
   }
+
+  public function salvarConsulta () {
+    $this->save();
+  }
 }
