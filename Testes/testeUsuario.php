@@ -54,3 +54,4 @@ $usuario->realizaLogin();
 
 $usuario = Usuario::getInstancia("admin", "admin");
 $usuario->realizaLogin();
+$usuario->getLogado();

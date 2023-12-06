@@ -84,6 +84,7 @@ class Usuario extends persist{
         }
         echo "Login realizado com sucesso! \n Olá, $login.\n\n";
         $this->logado = true;
+        $this->perfilDoUsuario = $usuario->getPerfilDoUsuario();
 
         
     } catch (Exception $e){
@@ -134,6 +135,10 @@ class Usuario extends persist{
 
     public function getPerfilDoUsuario(){
       return $this->perfilDoUsuario;
+    }
+
+    public function getLogado(){
+      return $this->logado;
     }
     
 

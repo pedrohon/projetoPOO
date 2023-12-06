@@ -4,6 +4,30 @@ include_once '../global.php';
 
 // TESTE 1 
 
+$funcionalidade1 = new Funcionalidade("Cadastro Dentista");
+$funcionalidade2 = new Funcionalidade("Cadastro Especialidade");
+$funcionalidade3 = new Funcionalidade("Cadastro Orcamento");
+$funcionalidade1->salvarFuncionalidade();
+$funcionalidade2->salvarFuncionalidade();
+$funcionalidade3->salvarFuncionalidade();
+
+$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3];
+$funcionalidesDentista = [$funcionalidade2, $funcionalidade3];
+$perfil1 = new Perfil("Administrador", $funcionalidadesAdmin);
+$perfil2 = new Perfil("Dentista", $funcionalidesDentista);
+$perfil1->salvarPerfil();
+$perfil2->salvarPerfil();
+
+$usuario1 = new Usuario("admin", "admin", $perfil1);
+$usuario2 = new Usuario("pedro", "pedro", $perfil2);
+
+$usuario = Usuario::getInstancia("pedro", "pedro");
+$usuario->salvarUsuario();
+
+$usuario->realizaLogin();
+
+$cadastroCliente = new CadastroCliente();
+$cadastroCliente->cadastrarNovoCliente($usuario, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 // tentar acessar uma funcionalidade qualquer sem que se tenha realizado login de usuário
 
 // TESTE 2
@@ -14,7 +38,7 @@ include_once '../global.php';
 // outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
 
 // TESTE 3
-
+/*
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
 
@@ -89,7 +113,7 @@ RegistroDePagamento::RegistrarPagamento($tratamento, "Cartão de crédito", 3, $
 
 
 
-/*//cadastrando cliente e paciente
+//cadastrando cliente e paciente
 $cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 $cliente -> salvarCliente();
 
@@ -141,4 +165,3 @@ $orcamento->save();
 
 
 //cálculo do resultado financeiro da clínica no mês de novembro/2023*/
-
