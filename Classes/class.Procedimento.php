@@ -9,80 +9,73 @@ class Procedimento extends persist {
     return get_called_class()::$local_filename;
   }
 
-  protected $id;
   protected $nomeDoProcedimento;
   protected $detalhamentoDoProcedimento;
   protected $valorUnitario;
   protected $qntDeConsultas;
 
-  protected static $nextId = 1;
-
   public function __construct($nomeDoProcedimento, $detalhamentoDoProcedimento, $valorUnitario, $qntDeConsultas) {
-      $this->id = self::$nextId++;
-      $this->nomeDoProcedimento = $nomeDoProcedimento;
-      $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
-      $this->valorUnitario = $valorUnitario;
-      $this->qntDeConsultas = $qntDeConsultas;
-      
+    $this->nomeDoProcedimento = $nomeDoProcedimento;
+    $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
+    $this->valorUnitario = $valorUnitario;
+    $this->qntDeConsultas = $qntDeConsultas;  
   }
 
-  
-public function getNomeDoProcedimento() {
-  return $this->nomeDoProcedimento;
-}
+  public function getNomeDoProcedimento() {
+    return $this->nomeDoProcedimento;
+  }
 
-public function getDescricaoDoProcedimento() {
-  return $this->detalhamentoDoProcedimento;
-}
+  public function getDescricaoDoProcedimento() {
+    return $this->detalhamentoDoProcedimento;
+  }
 
-public function getValorUnitario() {
-  return $this->valorUnitario;
-}
+  public function getValorUnitario() {
+    return $this->valorUnitario;
+  }
 
-/*public function getQntDeConsultas() {
+  public function getQntDeConsultas() {
+    return $this->qntDeConsultas;
+  }
+
+  public function setNomeDoProcedimento($nomeDoProcedimento) {
+    $this->nomeDoProcedimento = $nomeDoProcedimento;
+  }
+
+  public function setDescricaoDoProcedimento($detalhamentoDoProcedimento) {
+    $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
+  }
+
+  public function setValorUnitario($valorUnitario) {
+    $this->valorUnitario = $valorUnitario;
+  }
+
+  /*public function getQntDeConsultas() {
   return $this->qntDeConsultas;
 }*/
 
 public function calcularQtdConsultas($procedimento){
-// calcula a quantidade de consultas nececessárias para determinado procedimento
-  switch($procedimento){
-    case "Extração de dente":
-      return $qntDeConsultas = 1;
-    case "Tratamento com aparelho fixo": //mínimo de 1 ano, de 15 em 15
-      return $qntDeConsultas = 26;
-    case "Limpeza":
-      return $qntDeConsultas = 1;
-    case "Restauração":
-      return $qntDeConsultas = 1;
-    case "Extração Comum":
-      return $qntDeConsultas = 1;
-    case "Canal":
-      return $qntDeConsultas = 1;
-    case "Extração de Siso":
-      return $qntDeConsultas = 1;
-    case "Clareamento a laser":
-      return $qntDeConsultas = 1;
-    case "Clareamento de moldeira":
-      return $qntDeConsultas = 1;
-    default:
-      return $qntDeConsultas = 1; //mínimo de consultas
+  // calcula a quantidade de consultas nececessárias para determinado procedimento
+    switch($procedimento){
+      case "Extração de dente":
+        return $qntDeConsultas = 1;
+      case "Tratamento com aparelho fixo": //mínimo de 1 ano, de 15 em 15
+        return $qntDeConsultas = 26;
+      case "Limpeza":
+        return $qntDeConsultas = 1;
+      case "Restauração":
+        return $qntDeConsultas = 1;
+      case "Extração Comum":
+        return $qntDeConsultas = 1;
+      case "Canal":
+        return $qntDeConsultas = 1;
+      case "Extração de Siso":
+        return $qntDeConsultas = 1;
+      case "Clareamento a laser":
+        return $qntDeConsultas = 1;
+      case "Clareamento de moldeira":
+        return $qntDeConsultas = 1;
+      default:
+        return $qntDeConsultas = 1; //mínimo de consultas
+    }
   }
-}
-
-public function setNomeDoProcedimento($nomeDoProcedimento) {
-  $this->nomeDoProcedimento = $nomeDoProcedimento;
-}
-
-public function setDescricaoDoProcedimento($detalhamentoDoProcedimento) {
-  $this->detalhamentoDoProcedimento = $detalhamentoDoProcedimento;
-}
-
-public function setValorUnitario($valorUnitario) {
-  $this->valorUnitario = $valorUnitario;
-}
-
-public function setQntDeConsultas($qntDeConsultas) {
-  $this->qntDeConsultas = $qntDeConsultas;
-}
-
 }
