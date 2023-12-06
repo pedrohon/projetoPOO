@@ -70,30 +70,12 @@ class Orcamento extends persist {
   public function setAprovacao($aprovacao) {
       $this->aprovacao = $aprovacao;
   }
-/*
-  public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
-    $this->Procedimentos[] = [
-        'Procedimento' => $nomeDoProcedimento,
-        'Descricao' => $detalhamentoDoProcedimento
-    ];
-    $this->calcularValorTotal();
-}
-*/
 
-public function calcularValorTotal(){
-    $this->valorTotal = 0;
-    }
-}
+  public function calcularValorTotal(){
+      $this->valorTotal = 0;
+  }
 
-public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
-
-    if($aprovacaoPaciente !== null) {
-        $cadastroTratamento = new CadastroTratamento();
-        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,FormaDePagamento $nomeFormaDePagamento);
-
-    } else{
-        return null;
-    }
-}
-
+  public function aprovarOrcamento(){
+      $this->aprovacao = true;
+  }
 }
