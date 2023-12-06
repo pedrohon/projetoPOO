@@ -2,70 +2,82 @@
 
 include_once '../global.php';
 
-class ConsultaDeAvaliacao {
+class ConsultaDeAvaliacao extends persist {
 
-    static $local_filename = "ConsultaDeAvaliacao.txt";
-    static public function getFilename() {
-        return get_called_class()::$local_filename;
+  static $local_filename = "ConsultaDeAvaliacao.txt";
+  static public function getFilename() {
+    return get_called_class()::$local_filename;
+  }
+
+  protected $paciente;
+  protected $dentistaAvaliador;
+  protected $data;
+  protected $duracaoPrevista;
+  protected $foiRealizada;
+
+  public function __construct($paciente, $dentistaAvaliador, $data) {
+    $this->paciente = $paciente;
+    $this->dentistaAvaliador = $dentistaAvaliador;
+    $this->data = $data;
+    $this->duracaoPrevista = 30;
+    $this->foiRealizada = false;
+  }
+
+  static public function AgendarConsultaDeAvaliacao ($paciente, $dentistaAvaliador, $data) {
+    $novaConsultaDeAvaliacao = new ConsultaDeAvaliacao ($paciente, $dentistaAvaliador, $data);
+    $novaConsultaDeAvaliacao->save();
+    echo ("Consulta de avaliação marcada\n");
+    return $novaConsultaDeAvaliacao;
+  }
+
+  public function ConfirmarRealizacaoDaConsulta () {
+    $this->foiRealizada = true;
+    $this->save();
+    echo ("Consulta de avaliação foi realizada\n");
+  }
+
+  static public function gerarOrcamento ($paciente, $dentista, $data, $procedimentos) {
+
+    $valorTotal = 0;
+
+    foreach ($procedimentos as $procedimento) {
+      $x = Procedimento::getRecordsByField( "nomeDoProcedimento", $procedimento); 
+      $valor = $x[0]->getValorUnitario();
+      $valorTotal = $valorTotal + $valor;
     }
+    
+    $orcamento = new Orcamento($paciente, $dentista, $data, $procedimentos, $valorTotal);
+  }
 
-    protected $data;
-    protected $hora;
-    protected $dentista;
-    protected $paciente;
-    protected $procedimentos = array();
-    protected $valorTotal;
+  public function getPaciente() {
+    return $this->paciente;
+  }
 
-    public function __construct($data, $hora, Dentista $dentista, Paciente $paciente) {
-        $this->data = $data;
-        $this->hora = $hora;
-        $this->dentista = $dentista;
-        $this->paciente = $paciente;
-    }
+  public function getDentistaAvaliador() {
+    return $this->dentistaAvaliador;
+  }
 
-    public function agendarConsulta() {
-        echo "\nConsulta agendada para o dia {$this->data} às {$this->hora} com o dentista {$this->dentista->getNome()} para o paciente {$this->paciente->getNome()}.\n";
-    }
+  public function getData() {
+    return $this->data;
+  }
 
-    public function gerarOrcamento() {
-       
-        $orcamento = new Orcamento($this->paciente, $this->dentista, $this->data, $this->procedimentos, $this->valorTotal, false);
+  public function getDuracaoPrevista() {
+    return $this->duracaoPrevista;
+  }
 
-        $orcamento->calcularValorTotal();
-        $orcamento->aprovarOrcamento();
+  public function setPaciente($paciente) {
+    $this->paciente = $paciente;
+  }
 
-        return $orcamento;
-    }
+  public function setDentistaAvaliador($dentistaAvaliador) {
+    $this->dentistaAvaliador = $dentistaAvaliador;
+  }
 
-    public function getData() {
-        return $this->data;
-    }
+  public function setData($data) {
+    $this->data = $data;
+  }
 
-    public function setData($data) {
-        $this->data = $data;
-    }
-
-    public function getHora() {
-        return $this->hora;
-    }
-
-    public function setHora($hora) {
-        $this->hora = $hora;
-    }
-
-    public function getDentista() {
-        return $this->dentista;
-    }
-
-    public function setDentista(Dentista $dentista) {
-        $this->dentista = $dentista;
-    }
-
-    public function getPaciente() {
-        return $this->paciente;
-    }
-
-    public function setPaciente(Paciente $paciente) {
-        $this->paciente = $paciente;
-    }
+  public function setDuracaoPrevista($duracaoPrevista) {
+    $this->duracaoPrevista = $duracaoPrevista;
+  }
 }
