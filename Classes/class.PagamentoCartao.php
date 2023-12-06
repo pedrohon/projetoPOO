@@ -16,14 +16,13 @@ protected static $taxaParcela = [
 ];
 protected static $taxaDebito = 3;
 
-public function __construct ($formaDePagamento, $valorPago, $dataPagamento, $modalidade, $qtdParcelas){
-    parent::__construct($formaDePagamento, $valorPago, $dataPagamento);
+public function __construct ($formaDePagamento, $valorPago, $dataPagamento, $tratamento, $modalidade, $qtdParcelas){
+    parent::__construct ($tratamento, $formaDePagamento, $valorPago, $dataPagamento);
     $this->modalidade = $modalidade;
     $this->qtdParcelas = $qtdParcelas;
-    $this->calculaTaxa();
 }
 
-private function calculaTaxa(){
+private function calculaTaxa(RegistroDePagamento $valorPago){
     if ($this->modalidade === 'Cartão de Crédito') {
         $taxaDesconto = isset(self::$taxaParcela[$this->qtdParcelas])
             ? self::$taxaParcela[$this->qtdParcelas]
@@ -61,7 +60,7 @@ public function setQtdParcelas($qtdParcelas){
 
 //TESTE
 
-$pgmTeste = new PagamentoCartao($modalidade, $qtdParcelas);
+/*$pgmTeste = new PagamentoCartao($modalidade, $qtdParcelas);
 
 $registro = new RegistroDePagamento ($valorPago, $dataPagamento);
 
@@ -77,6 +76,6 @@ echo "O Valor Pago foi de: R$" . $registro->getValorPago() . "<br>";
 
 echo "O valor de Taxa da transação é de: R$" . $desconto->calculaTaxa() . "<br>";
 echo "O valor recebido pela clínica é de: R$" . $valorPago->calculaTaxa() . "<br>";
-echo "O valor de Imposto pago pela transação é de: R$" . $registro->calculaImposto() . "<br>";
+echo "O valor de Imposto pago pela transação é de: R$" . $registro->calculaImposto() . "<br>";*/
 
 ?>
