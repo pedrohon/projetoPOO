@@ -24,13 +24,13 @@ class ConsultaDeAvaliacao {
     }
 
     public function agendarConsulta() {
-        echo "Consulta agendada para o dia {$this->data} às {$this->hora} com o dentista {$this->dentista->getNome()} para o paciente {$this->paciente->getNome()}.";
+        echo "\nConsulta agendada para o dia {$this->data} às {$this->hora} com o dentista {$this->dentista->getNome()} para o paciente {$this->paciente->getNome()}.\n";
     }
 
     public function gerarOrcamento() {
        
         $orcamento = new Orcamento($this->paciente, $this->dentista, $this->data, $this->procedimentos, $this->valorTotal, false);
-        
+
         $orcamento->calcularValorTotal();
         $orcamento->aprovarOrcamento();
 
