@@ -72,6 +72,7 @@ $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 $cadastroOrcamento = new CadastroOrcamento();
 $orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
 $orcamento->aprovarOrcamento("Cartão de crédito");
+
 //agendada uma consulta para realização de cada procedimento o após a consulta de avaliação e posterior aprovação do orçamento.
 
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
