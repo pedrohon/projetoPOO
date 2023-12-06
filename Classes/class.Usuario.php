@@ -2,28 +2,59 @@
 
 include_once '../global.php';
 
-class Usuario extends persist{
+// include_once 'persist.php';
 
-    static $local_filename = "Perfil.txt";
+class Usuario extends Pessoa { 
+
+  static $local_filename = "Usuario.txt";
+
   static public function getFilename() {
     return get_called_class()::$local_filename;
   }
 
-  private $login;
-  private $senha;
+  protected $login;
+  protected $senha;
+  protected $idPerfil;
+  protected $logado;
   private static $instancia;
-  private $logado = false;
 
-  public function __construct($login, $senha){
+ 
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $login, $senha, $idPerfil) {
+    parent::__construct($nome, $telefone, $email, $cpf, $rg);
     $this->login = $login;
     $this->senha = $senha;
+    $this->idPerfil = $idPerfil;
   }
-
-  public static function getInstancia($login, $senha){
+  
+   public static function getInstancia($login, $senha){
     if (!self::$instancia){
         self::$instancia = new Usuario($login, $senha);
     }
     return self::$instancia;
+  }
+
+  public function getLogin() {
+    return $this->login;
+  }
+
+  public function getSenha() {
+    return $this->senha;
+  }
+
+  public function getIdPerfil() {
+    return $this->idPerfil;
+  }
+
+  public function setLogin($login) {
+    $this->login = $login;
+  }
+
+  public function setSenha($senha) {
+    $this->senha = $senha;
+  }
+
+  public function setIdPerfil($idPerfil) {
+    $this->idPerfil = $idPerfil;
   }
 
   public function realizaLogin($login, $senha){
@@ -37,16 +68,15 @@ class Usuario extends persist{
         }else {
             throw new Exception("Falha no login. Credencial não encontrada.\n");
         }
-    } catch (Exception $e){
+      } 
+      catch (Exception $e){
         echo "Erro: " . $e->getMessage();
+      }
     }
-    }
-
-    public function realizaLogout(){
+  
+  public function realizaLogout(){
         $this->logado = false;
         echo "Logout realizado com sucesso.\n";
     }
-
-  }
-
+}    
 ?>

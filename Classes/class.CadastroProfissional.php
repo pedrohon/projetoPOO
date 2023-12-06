@@ -11,6 +11,7 @@ class CadastroProfissional {
       $novoProfissional = new Profissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
       $novoProfissional->salvarProfissional();
       echo "Profissional cadastrado com sucesso!\n";
+
     }
   }
 }

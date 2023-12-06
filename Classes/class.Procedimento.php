@@ -9,6 +9,8 @@ class Procedimento extends persist {
     return get_called_class()::$local_filename;
   }
 
+
+  protected $id;
   protected $nomeDoProcedimento;
   protected $detalhamentoDoProcedimento;
   protected $valorUnitario;
@@ -31,10 +33,6 @@ class Procedimento extends persist {
 
   public function getValorUnitario() {
     return $this->valorUnitario;
-  }
-
-  public function getQntDeConsultas() {
-    return $this->qntDeConsultas;
   }
 
   public function setNomeDoProcedimento($nomeDoProcedimento) {

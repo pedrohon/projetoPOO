@@ -1,5 +1,6 @@
 <?php
 
+
 include_once '../global.php';
 
 //Fazer função para verificar se o usuário está logado e ver se ele tem acesso ao perfil
@@ -8,6 +9,7 @@ class Perfil extends persist{
   static public function getFilename() {
     return get_called_class()::$local_filename;
   }
+
     protected $idPerfil;
     protected $nomeDoPerfil;
     protected $funcionalidades = array();

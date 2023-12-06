@@ -13,6 +13,7 @@ class CadastroEspecialidade {
       $novaEspecialidade = new Especialidade($especialidade, $procedimento, $percentualDeParticipacao);
       $novaEspecialidade->save();
       echo "Especialidade cadastrada com sucesso!\n";
+
     }
   }
 }

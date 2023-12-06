@@ -5,6 +5,7 @@ include_once '../global.php';
 class CadastroProcedimento {
   public function cadastrarNovoProcedimento($nomeDoProcedimento, $detalhamentoDoProcedimento, $valorUnitario, $qntDeConsultas) {
     try {     
+
       Procedimento::getRecordsByField( "nomeDoProcedimento", $nomeDoProcedimento); 
     }
     catch (Exception $e) {

@@ -43,7 +43,10 @@ class Profissional extends Pessoa {
     $this->cargo = $cargo;
   }
 
+
   public function salvarProfissional () {
     $this->save();
   }
 }
+
+?>
