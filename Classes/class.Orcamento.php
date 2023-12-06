@@ -82,8 +82,6 @@ class Orcamento extends persist {
 
 public function calcularValorTotal(){
     $this->valorTotal = 0;
-    foreach ($this->procedimentos as $item){
-        $this->valorTotal += $item['Procedimento']->valorUnitario;
     }
 }
 
