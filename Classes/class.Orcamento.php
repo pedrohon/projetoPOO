@@ -20,67 +20,8 @@ class Orcamento extends persist {
     $this->paciente = $paciente;
     $this->dentista = $dentista;
     $this->data = $data;
-    $this->procedimentos = $procedimentos;
-    $this->valorTotal = $valorTotal;
-    $this->aprovacao = $aprovacao;
   }
 
-  public function getPaciente() {
-    return $this->paciente;
-  }
-
-  public function getDentista() {
-    return $this->dentista;
-  }
-
-  public function getData() {
-    return $this->data;
-  }
-
-  public function getProcedimentos() {
-    return $this->procedimentos;
-  }
-
-  public function getValorTotal() {
-    return $this->valorTotal;
-  }
-
-  public function getAprovacao() {
-    return $this->aprovacao;
-  }
-
-  public function setPaciente($paciente) {
-    $this->paciente = $paciente;
-  }
-
-  public function setDentista($dentista) {
-    $this->dentista = $dentista;
-  }
-
-  public function setData($data) {
-    $this->data = $data;
-  }
- 
-  public function setProcedimentos($procedimentos) {
-    $this->procedimentos = $procedimentos;
-  }
-
-  public function setValorTotal($valorTotal) {
-    $this->valorTotal = $valorTotal;
-  }
-
-  public function setAprovacao($aprovacao) {
-      $this->aprovacao = $aprovacao;
-  }
-/*
-  public function getProcedimentos($nomeDoProcedimento, $detalhamentoDoProcedimento){
-    $this->Procedimentos[] = [
-        'Procedimento' => $nomeDoProcedimento,
-        'Descricao' => $detalhamentoDoProcedimento
-    ];
-    $this->calcularValorTotal();
-}
-*/
 public function calcularValorTotal(){
     $this->valorTotal = 0;
     foreach ($this->Procedimentos as $procedimento){
@@ -91,7 +32,7 @@ public function calcularValorTotal(){
 public function aprovarOrcamento($aprovacaoPaciente, $formaDePagamento){
     if($this->aprovacaoPaciente !== null) {
         $cadastroTratamento = new CadastroTratamento();
-        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,$formaDePagamento);
+        $cadastroTratamento->cadastrarNovoTratamento($this->paciente,$this->dentista,$this->data,$this->procedimentos,$this->valorTotal,$this->aprovacao,FormaDePagamento $nomeFormaDePagamento);
     } else{
         return null;
     }

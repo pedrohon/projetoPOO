@@ -14,7 +14,7 @@ class CadastroDentista {
 
       $novoDentista = new Dentista($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro);
       $novoDentista->salvarDentista();
-      echo "Dentista cadastrado com sucesso!";
+      echo "Dentista cadastrado com sucesso!\n";
     }
   }
 }
