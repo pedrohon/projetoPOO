@@ -67,4 +67,4 @@ $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.c
 
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
 
-//cálculo do resultado financeiro da clínica no mês de novembro/202
+//cálculo do resultado financeiro da clínica no mês de novembro/2023
