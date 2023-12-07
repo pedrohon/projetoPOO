@@ -15,8 +15,10 @@ class CadastroPaciente {
         }
         if($usuarioLogado && $existeFuncionalidade){
             try{
-                Paciente::getRecordsByField( "cpf", $cpf); 
+                $paciente = Paciente::getRecordsByField( "cpf", $cpf); 
                 echo "Paciente já cadastrado!\n";
+                return ($paciente[0]);
+
             }
             catch(Exception $e){
                 $novoPaciente = new Paciente($nome, $telefone, $email, $cpf, $rg, $dataDeNascimento, $responsavelFinanceiro);
