@@ -174,7 +174,14 @@ echo "\n\tTESTE 9\n";
 echo "\tConfirmar realização dos procedimentos\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
+RealizacaoProcedimento::ConfirmarRealizacaoDeProcedimento("12345",$paciente,"Limpeza","2023-12-13 13:00:00");
+RealizacaoProcedimento::ConfirmarRealizacaoDeProcedimento("12345",$paciente,"Clareamento a laser","2023-12-13 13:30:00");
+RealizacaoProcedimento::ConfirmarRealizacaoDeProcedimento("12345",$paciente,"Restauração","2023-12-13 16:30:00");
+RealizacaoProcedimento::ConfirmarRealizacaoDeProcedimento("12345",$paciente,"Restauração","2023-12-13 17:30:00");
 
+echo "\n\tTESTE 10\n"; 
+echo "\tRegistrar pagamento\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
 /*
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x

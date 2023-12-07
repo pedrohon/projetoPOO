@@ -6,14 +6,22 @@ class RealizacaoProcedimento extends persist{
     static public function getFilename() {
         return get_called_class()::$local_filename;
     }
-    protected $idRealizacaoProcedimento;
+
+    protected $dentista;
+    protected $paciente;
     protected $procedimentoRealizado;
     protected $dataConclusaoProcedimento;
 
-    public function __construct(Tratamento $idTratamento, Procedimento $idProcedimento, Consulta $idConsulta, $idRealizacaoProcedimento, $procedimentoRealizado, $dataConclusaoProcedimento){
-        $this->idRealizacaoProcedimento = $idRealizacaoProcedimento;
+    public function __construct($dentista, $paciente, $procedimentoRealizado, $dataConclusaoProcedimento) {
+        $this->dentista = $dentista;
+        $this->paciente = $paciente;
         $this->procedimentoRealizado = $procedimentoRealizado;
         $this->dataConclusaoProcedimento = $dataConclusaoProcedimento;
+    }
+
+    static public function ConfirmarRealizacaoDeProcedimento ($dentista, $paciente, $procedimentoRealizado, $dataConclusaoProcedimento){
+        $RealizacaoProcedimento = new RealizacaoProcedimento ($dentista, $paciente, $procedimentoRealizado, $dataConclusaoProcedimento);
+        $RealizacaoProcedimento->save();
     }
     
     public function acessarDataDaConsulta(AgendamentoDeConsulta $dataDaConsulta){
