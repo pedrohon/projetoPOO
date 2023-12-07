@@ -35,21 +35,21 @@ class ReceitaMensal extends persist {
 
         switch ($formaDePagamento) {
           case 'Dinheiro à vista':
-            $receitasTratamento += $valorPago;
+            $receitasTratamento += $receita->getvalorPago();
             break;
           case 'Pix':
-            $receitasTratamento += $valorPago*0.97;
+            $receitasTratamento += ($receita->getvalorPago())*0.97;
             break;
           case 'Débito':
-            $receitasTratamento += $valorPago;
+            $receitasTratamento += $receita->getvalorPago();
             break;
           case 'Crédito':
             $parcelas = $receita->getParcelas();
             if($parcelas == 1 || $parcelas == 2 || $parcelas == 3){ 
-              $receitasTratamento += $valorPago*0.96;
+              $receitasTratamento += ($receita->getvalorPago())*0.96;
             }
             elseif($parcelas == 4 || $parcelas == 5 || $parcelas == 6){
-              $receitasTratamento += $valorPago*0.93;
+              $receitasTratamento += ($receita->getvalorPago())*0.93;
             }
             break;
           default:
