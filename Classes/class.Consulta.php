@@ -16,7 +16,7 @@ class Consulta extends persist {
   protected $procedimento;
 
 
-  public function __construct(Paciente $paciente, Dentista $dentistaExecutor, $data, $duracaoPrevista, Procedimento $procedimento) {
+  public function __construct(Paciente $paciente, $dentistaExecutor, $data, $duracaoPrevista, $procedimento) {
     $this->paciente = $paciente;
     $this->dentistaExecutor = $dentistaExecutor;
     $this->data = $data;

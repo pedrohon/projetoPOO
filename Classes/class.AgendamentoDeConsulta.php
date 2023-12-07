@@ -7,7 +7,7 @@ class AgendamentoDeConsulta {
             
             if($usuario->getPerfilDoUsuario() != null)
             {
-                $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento de Consulta");
+                $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento Consulta");
             }
             else{
                 $existeFuncionalidade = false;
