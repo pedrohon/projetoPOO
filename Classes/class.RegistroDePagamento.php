@@ -49,7 +49,7 @@ class RegistroDePagamento extends persist {
         }
         if($usuarioLogado && $existeFuncionalidade){
           $novoRegistro = new RegistroDePagamento ($formaDePagamento, $parcelas, $valorPago, $dataPagamento);
-          $novoRegistro->save();
+          $novoRegistro->save();        
           echo ("Pagamento registrado\n");
           return $novoRegistro;
         }
