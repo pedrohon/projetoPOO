@@ -3,22 +3,42 @@
 include_once '../global.php';
 
 class CadastroDentista {
- 
-	public function cadastrarNovoDentista($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro) {
-    try {      
-    	Dentista::getRecordsByField( "cpf", $cpf);  
+  public function cadastrarNovoDentista($usuario, $nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro) {
+    $usuarioLogado = $usuario->getLogado();
+    
+    if($usuario->getPerfilDoUsuario() != null)
+    {
+        $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Cadastro Dentista");
     }
-    catch (Exception $e) {
-			$cadastroProfissional = new CadastroProfissional();
-      $cadastroProfissional->cadastrarNovoProfissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
-
-      $novoDentista = new Dentista($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro);
-      $novoDentista->salvarDentista();
-      echo "Dentista cadastrado com sucesso!\n";
-
+    else{
+        $existeFuncionalidade = false;
+    }
+    if($usuarioLogado && $existeFuncionalidade){
+        try {      
+          Dentista::getRecordsByField( "cpf", $cpf);  
+          echo "Dentista já cadastrado!\n";
+        }
+        catch (Exception $e) {
+          $cadastroProfissional = new CadastroProfissional();
+          $cadastroProfissional->cadastrarNovoProfissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
+    
+          $novoDentista = new Dentista($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro);
+          $novoDentista->salvarDentista();
+          echo "Dentista cadastrado com sucesso!\n";
+        }
+    }
+    else{
+        if(!$usuarioLogado){
+            echo "\nErro: Não foi possível realizar o cadastro do dentista porque o usuário '" . $usuario->getLogin() . "' não está logado!\n\n";
+        }
+        else{
+            echo "\nErro: Não foi possível realizar o cadastro do dentista porque o usuário '" . $usuario->getLogin() . "' não tem permissão para cadastrar dentistas!\n\n";
+          }
     }
   }
 }
+
+
 
 //para usar 
 //$cadastroDentista = new CadastroDentista();
