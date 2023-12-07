@@ -29,7 +29,7 @@ class ConsultaDeAvaliacao extends persist {
         
         if($usuario->getPerfilDoUsuario() != null)
         {
-            $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Cadastro Cliente");
+            $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento de Consulta de Avaliação");
         }
         else{
             $existeFuncionalidade = false;
