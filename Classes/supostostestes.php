@@ -134,13 +134,17 @@ echo "--------------------------------------------------------------------------
 //$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
  
 //$cadastroPaciente = new cadastroPaciente();
-//$cadastroPaciente->cadastrarNovoPaciente($usuario1, "Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "Limpeza", "1997-12-10", $cliente);
+//$cadastroPaciente->cadastrarNovoPaciente($usuario1, "Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "1997-12-10", $cliente);
 
- /*
+echo "\n\tTESTE 6\n"; 
+echo "\tAgendamento de consulta de avaliação para dia 06/11 às 14h\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
+
 //agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
 $novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao("123.456.789-10", "54321", "2023-11-06 14:00:00");
 $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 
+/*
 //após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
 $cadastroOrcamento = new CadastroOrcamento();
 $orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
