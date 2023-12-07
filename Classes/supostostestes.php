@@ -42,7 +42,8 @@ echo "\tusuário previamente cadastrado e com perfil de acesso a todas as funcio
 echo "\tdeve fazer o login no sistema com sucesso para iniciar os testes\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
-$usuario1 = Usuario::getInstancia("pedro", "senha");
+//$usuario1 = Usuario::getInstancia("pedro", "senha");
+$usuario1 = Usuario::getInstancia("admin", "admin");
 $usuario1->realizaLogin();
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração Comum", "Não inclui dente siso.", 280, 1);
@@ -52,25 +53,19 @@ $cadastroCliente = new CadastroCliente();
 $cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 */
 
-/*
-
 
 //$usuario1 = new Usuario("admin", "admin", $perfil1);
 //$usuario2 = new Usuario("pedro", "pedro", $perfil2);
 //$usuario1->salvarUsuario();
 //$usuario2->salvarUsuario();
 
-
-$usuario1->realizaLogout();
-$usuario1->realizaLogin();
-
-
-*/
+//$usuario1->realizaLogout();
+//$usuario1->realizaLogin();
 
 
 
 
-/*
+
 
 
 
@@ -78,60 +73,78 @@ $usuario1->realizaLogin();
 // em seguida faça o logout deste usuário
 // outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
 
-// TESTE 3
-$cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Limpeza", " ", 200, 1);
-
-
-$cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Restauração", "", 185, 1);
+echo "\n\tTESTE 3\n"; 
+echo "\tCadastro dos procedimentos\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Extração Comum", "Não inclui dente siso.", 280, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Limpeza", " ", 200, 1);
 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Canal", "", 800, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Restauração", "", 185, 1);
 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Extração de Siso", "Valor por dente", 400, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração Comum", "Não inclui dente siso.", 280, 1);
 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Clareamento a laser", " ", 1700, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Canal", "", 800, 1);
 
 $cadastroProcedimento = new CadastroProcedimento();
-$cadastroProcedimento->cadastrarNovoProcedimento("Clareamento de moldeira", "Clareamento caseiro", 900, 1);
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração de Siso", "Valor por dente", 400, 1);
 
-//cadastrando especialidades
-$cadastroEspecialidade = new CadastroEspecialidade();
-$cadastroEspecialidade->cadastrarNovaEspecialidade("Clínica Geral", ["Limpeza", "Restauração", "Extração Comum"], 0.4);
+$cadastroProcedimento = new CadastroProcedimento();
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Clareamento a laser", " ", 1700, 1);
 
-$cadastroEspecialidade = new CadastroEspecialidade();
-$cadastroEspecialidade->cadastrarNovaEspecialidade("Endodontia", ["Canal"], 0.4);
+$cadastroProcedimento = new CadastroProcedimento();
+$cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Clareamento de moldeira", "Clareamento caseiro", 900, 1);
 
-$cadastroEspecialidade = new CadastroEspecialidade();
-$cadastroEspecialidade->cadastrarNovaEspecialidade("Cirurgia", ["Extração de Siso"], 0.4);
+echo "\n\tTESTE 4\n"; 
+echo "\tCadastro das especialidades\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
 $cadastroEspecialidade = new CadastroEspecialidade();
-$cadastroEspecialidade->cadastrarNovaEspecialidade("Estética", ["Clareamento a laser", "Clareamento a moldeira"], 0.4);
+$cadastroEspecialidade->cadastrarNovaEspecialidade($usuario1, "Clínica Geral", ["Limpeza", "Restauração", "Extração Comum"], 0.4);
 
-//cadastrando dentistas
+$cadastroEspecialidade = new CadastroEspecialidade();
+$cadastroEspecialidade->cadastrarNovaEspecialidade($usuario1, "Endodontia", ["Canal"], 0.4);
+    
+$cadastroEspecialidade = new CadastroEspecialidade();
+$cadastroEspecialidade->cadastrarNovaEspecialidade($usuario1, "Cirurgia", ["Extração de Siso"], 0.4);
+        
+$cadastroEspecialidade = new CadastroEspecialidade();
+$cadastroEspecialidade->cadastrarNovaEspecialidade($usuario1, "Estética", ["Clareamento a laser", "Clareamento a moldeira"], 0.4);
+
+
+echo "\n\tTESTE 4\n"; 
+echo "\tCadastro dos dentistas\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n";
+
 $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Alice", "987654321", "alice@example.com", "987.654.321-02", "7654321", 5000, "Rua ABC", "Dentista", "12345", [" Clínica Geral", "Endodontia", "Cirurgia"], false);
 
 $cadastroDentista = new CadastroDentista();
 $cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 0, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
 
-//cadastro do cliente e do paciente 
- $cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
- $cliente -> salvarCliente();
+
+echo "\n\tTESTE 5\n"; 
+echo "\tCadastro do cliente e paciente\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
+
+//$cadastroCliente = new CadastroCliente();
+//$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
  
- $paciente = new Paciente("Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "Limpeza", "1997-12-10", $cliente);
- $paciente -> salvarPaciente();
+//$cadastroPaciente = new cadastroPaciente();
+//$cadastroPaciente->cadastrarNovoPaciente($usuario1, "Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "1997-12-10", $cliente);
+
+echo "\n\tTESTE 6\n"; 
+echo "\tAgendamento de consulta de avaliação para dia 06/11 às 14h\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
 //agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
 $novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao("123.456.789-10", "54321", "2023-11-06 14:00:00");
 $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 
+/*
 //após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
 $cadastroOrcamento = new CadastroOrcamento();
 $orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
