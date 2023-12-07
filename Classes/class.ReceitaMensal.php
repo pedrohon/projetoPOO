@@ -29,7 +29,7 @@ class ReceitaMensal extends persist {
       $receitas = RegistroDePagamento::getRecords();
       $receitasTratamento = 0;
 
-      foreach ($receitasDeTratamentoNoMes as $receita) {
+      foreach ($receitas as $receita) {
         $valorPago = $receita->valorPago;
         $formaDePagamento = $receita->formaDePagamento;
 
@@ -59,10 +59,6 @@ class ReceitaMensal extends persist {
         $receitasTratamento += $receita->getValorTotal();
       }
 
-
-      $custosSalario = $this->calcularCustosSalario();
-      $receitasTratamento = $this->calcularReceitasTratamento();
-
-      echo "A receita mensal é de: " . ($receitasTratamento - $custosSalario);
+      echo "A receita mensal é de: " . ($receitasTratamento - $somaSalarios);
   }
 }
