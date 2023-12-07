@@ -3,7 +3,7 @@
 include_once '../global.php';
 
 class CadastroProfissional {
-  public function cadastrarNovoProfissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo) {
+  public function cadastrarNovoProfissional($usuario, $nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo) {
         $usuarioLogado = $usuario->getLogado();
         
         if($usuario->getPerfilDoUsuario() != null)
