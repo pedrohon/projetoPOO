@@ -30,8 +30,8 @@ class ReceitaMensal extends persist {
       $receitasTratamento = 0;
 
       foreach ($receitas as $receita) {
-        $valorPago = $receita->valorPago;
-        $formaDePagamento = $receita->formaDePagamento;
+        $valorPago = $receita->getValorPago();
+        $formaDePagamento = $receita->getFormaDePagamento();
 
         switch ($formaDePagamento) {
           case 'Dinheiro à vista':
@@ -44,7 +44,7 @@ class ReceitaMensal extends persist {
             $receitasTratamento += $valorPago;
             break;
           case 'Crédito':
-            $parcelas = $receita->parcelas;
+            $parcelas = $receita->getParcelas();
             if($parcelas == 1 || $parcelas == 2 || $parcelas == 3){ 
               $receitasTratamento += $valorPago*0.96;
             }
@@ -56,9 +56,9 @@ class ReceitaMensal extends persist {
             break;
         }
         
-        $receitasTratamento += $receita->getValorTotal();
+        $receitasTratamento += $receita->getValorPago();
       }
 
-      echo "A receita mensal é de: " . ($receitasTratamento - $somaSalarios);
+      echo "A receita mensal é de: R$" . ($receitasTratamento - $somaSalarios) . "\n";
   }
 }

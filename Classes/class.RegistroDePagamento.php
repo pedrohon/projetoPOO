@@ -33,6 +33,14 @@ class RegistroDePagamento extends persist {
     $this->valorPago = $valorPago;
   }
 
+  public function getParcelas() {
+    return $this->parcelas;
+  }
+
+  public function getFormaDePagamento() {
+    return $this->formaDePagamento;
+  }
+
   public function setDataPagamento($dataPagamento) {
     $this->dataPagamento = $dataPagamento;
   }

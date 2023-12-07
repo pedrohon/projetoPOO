@@ -58,16 +58,16 @@ $usuario1->realizaLogin();
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração Comum", "Não inclui dente siso.", 280, 1);
 
-$usuario1->realizaLogout();
-
-$usuario1 = Usuario::getInstancia("admin", "admin");
-$usuario1->realizaLogin();
 
 
 /* ele conseguiria cadastrar um Cliente
 $cadastroCliente = new CadastroCliente();
 $cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 */
+$usuario1->realizaLogout();
+
+$usuario1 = Usuario::getInstancia("admin", "admin");
+$usuario1->realizaLogin();
 
 echo "\n\tTESTE 3\n"; 
 echo "\tCadastro dos procedimentos\n\n";
