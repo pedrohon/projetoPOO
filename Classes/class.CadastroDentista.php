@@ -20,7 +20,7 @@ class CadastroDentista {
         }
         catch (Exception $e) {
           $cadastroProfissional = new CadastroProfissional();
-          $cadastroProfissional->cadastrarNovoProfissional($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
+          $cadastroProfissional->cadastrarNovoProfissional($usuario, $nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo);
     
           $novoDentista = new Dentista($nome, $telefone, $email, $cpf, $rg, $salario, $endereco, $cargo, $cro, $especialidade, $parceiro);
           $novoDentista->salvarDentista();
