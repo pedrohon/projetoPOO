@@ -18,6 +18,7 @@ class CadastroOrcamento {
             $novoOrcamento = new Orcamento($paciente, $dentista, $data, $procedimentos, $valorTotal);
             $novoOrcamento->save();
             echo "Orçamento cadastrado com sucesso!\n";
+            return $novoOrcamento;
         }
         else{
             if(!$usuarioLogado){
