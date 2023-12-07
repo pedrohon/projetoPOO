@@ -65,7 +65,7 @@ class RegistroDePagamento extends persist {
 
 
 
-    
+
   }
 
   public function salvarRegistroDePagamento () {
