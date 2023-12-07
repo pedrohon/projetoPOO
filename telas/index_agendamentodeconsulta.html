@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Agendamento de Consulta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="processar_agendamento.php" method="post">
+        <h2>Cadastro de Agendamento de Consulta</h2>
+
+        <label for="dentista">Dentista Executor:</label>
+        <input type="text" id="dentista" name="dentista" required>
+
+        <label for="paciente">Paciente:</label>
+        <input type="text" id="paciente" name="paciente" required>
+
+        <label for="data">Data da Consulta:</label>
+        <input type="date" id="data" name="data" required>
+
+        <label for="duracao">Duração Prevista (minutos):</label>
+        <input type="number" id="duracao" name="duracao" required>
+
+        <label for="qntConsultas">Quantidade de Consultas:</label>
+        <input type="number" id="qntConsultas" name="qntConsultas" required>
+
+        <button type="submit">Cadastrar Consulta</button>
+    </form>
+</body>
+</html>

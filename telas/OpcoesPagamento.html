@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Página de Pagamento</title>
+</head>
+<body>
+<h1>Qual será a forma de pagamento?<br/></h1>
+<form method="post" action="FormaDePagamento.php">
+<select name="metodos">
+<option value="dindin">Dinheiro</option>
+<option value="pix">Pix</option>
+<option value="debito">Cartão de Débito</option>
+<option value="credito">Cartão de Crédito</option>
+</select>
+<form>
+    <legend><br/>Terá mais de uma opção de pagamento?</legend>
+    <div>
+      <input type="radio" name="selecionar" value="sim" /> Sim<br />
+  
+      <input type="radio" name="selecionar" value="nao" cheked /> Não<br />
+    </div>
+</form>
+<input type="submit" value="Concluir" />
+<input type="reset" value="Cancelar" />
+</form>
+</body>
+</html>
