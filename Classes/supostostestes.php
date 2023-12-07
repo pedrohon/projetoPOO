@@ -161,6 +161,9 @@ echo "\n\tTESTE 8\n";
 echo "\tAgendar consultas do tratamento\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
+$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 13:00:00", 30, "Limpeza");
+//$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 13:00:00", 30, "Limpeza");
+//$novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 
 /*
 //agendada uma consulta para realização de cada procedimento.

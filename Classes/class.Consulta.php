@@ -14,16 +14,14 @@ class Consulta extends persist {
   protected $data;
   protected $duracaoPrevista;
   protected $procedimento;
-  protected $isConsultaDeAvaliacao;
 
 
-  public function __construct(Paciente $paciente, Dentista $dentistaExecutor, $data, $duracaoPrevista, Procedimento $procedimento, $isConsultaDeAvaliacao = false) {
+  public function __construct(Paciente $paciente, Dentista $dentistaExecutor, $data, $duracaoPrevista, Procedimento $procedimento) {
     $this->paciente = $paciente;
     $this->dentistaExecutor = $dentistaExecutor;
     $this->data = $data;
     $this->duracaoPrevista = $duracaoPrevista;
     $this->procedimento = $procedimento;
-    $this->isConsultaDeAvaliacao = $isConsultaDeAvaliacao;
   }
 
   public function getPaciente() {
@@ -64,13 +62,6 @@ class Consulta extends persist {
 
   public function setProcedimento($procedimento) {
     $this->procedimento = $procedimento;
-  }
-
-  public function gerarOrcamento(Orcamento $orcamento) {
-    if ($this->isConsultaDeAvaliacao == true)
-      return $this->duracaoPrevista;
-    else 
-      return null;
   }
 
   public function salvarConsulta () {

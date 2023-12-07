@@ -2,81 +2,30 @@
 
 class AgendamentoDeConsulta {
 
-    protected $dentistaExecutor;
-    protected $paciente;
-    protected $dataDaConsulta;
-    protected $duracaoPrevista;
-    protected $qntDeConsultas;
-    protected $consultas = array();
-
-    public function __construct(Dentista $dentistaExecutor, Paciente $paciente, $dataDaConsulta, int $duracaoPrevista) {
-        $this->dentistaExecutor = $dentistaExecutor;
-        $this->paciente = $paciente;
-        $this->dataDaConsulta = $dataDaConsulta;
-        $this->duracaoPrevista = $duracaoPrevista;
-    }
-
-    public function getDentistaExecutor() {
-        return $this->dentistaExecutor;
-    }
-
-    public function getPaciente() {
-        return $this->paciente;
-    }
-
-    public function getDataDaConsulta() {
-        return $this->dataDaConsulta;
-    }
-
-    public function getDuracaoPrevista() {
-        return $this->duracaoPrevista;
-    }
-
-    public function getqntDeConsultas(){
-     return $this->qntDeConsultas;
-    }
-
-    public function setDentistaExecutor($dentistaExecutor) {
-        $this->dentistaExecutor = $dentistaExecutor;
-    }
-
-    public function setPaciente($paciente) {
-        $this->paciente = $paciente;
-    }
-
-    public function setDataDaConsulta($dataDaConsulta) {
-        $this->dataDaConsulta = $dataDaConsulta;
-    }
-
-    public function setDuracaoPrevista($duracaoPrevista) {
-        $this->duracaoPrevista = $duracaoPrevista;
-    }
-
-    public function setQntDeConsultas($qntDeConsultas){
-      $this->qntDeConsultas=$qntDeConsultas;
-    }
-
-    public function agendarConsulta(Orcamento $orcamento) {
-      // Verifica se o orçamento foi aprovado
-      return $orcamento->aprovado();
-    }   
-
-    public function criarConsultasAutomaticamente(Orcamento $orcamento) {
-        // Verifica se o orçamento foi aprovado antes de criar a consulta
-        if ($this->agendarConsulta($orcamento)) {
-            for ($i = 0; $i < $this->qntDeConsultas; $i++) {
-                $consulta = new Consulta("dia 5", "drt joao");
-                $this->adicionarConsulta($consulta);
-                if($consulta instanceof Consulta) {
-                echo "\nConsulta instanciada\n";
+    static public function AgendarConsulta (Usuario $usuario, Paciente $paciente, Dentista $dentistaExecutor, $data, $duracaoPrevista, $procedimento) {
+        $usuarioLogado = $usuario->getLogado();
+            
+            if($usuario->getPerfilDoUsuario() != null)
+            {
+                $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento de Consulta");
             }
+            else{
+                $existeFuncionalidade = false;
             }
-        }
-    }
-
-    public function adicionarConsulta(Consulta $consulta) {
-        $this->consultas[] = $consulta;
-    } 
-
+            if($usuarioLogado && $existeFuncionalidade){
+              $novaConsulta = new Consulta ($paciente, $dentistaExecutor, $data, $duracaoPrevista, $procedimento);
+              $novaConsulta->save();
+              echo ("Consulta marcada\n");
+              return $novaConsulta;
+            }
+            else{
+              if(!$usuarioLogado){
+                  echo "\nErro: Não foi possível realizar o agendamento da consulta porque o usuário '" . $usuario->getLogin() . "' não está logado!\n\n";
+              }
+              else{
+                  echo "\nErro: Não foi possível realizar o agendamento da consulta porque o usuário '" . $usuario->getLogin() . "' não tem permissão para realizar esse agendamento!\n\n";
+              }
+            }
+      }
 }
     
