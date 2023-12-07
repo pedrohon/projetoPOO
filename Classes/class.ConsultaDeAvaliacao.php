@@ -23,11 +23,31 @@ class ConsultaDeAvaliacao extends persist {
     $this->foiRealizada = false;
   }
 
-  static public function AgendarConsultaDeAvaliacao ($paciente, $dentistaAvaliador, $data) {
-    $novaConsultaDeAvaliacao = new ConsultaDeAvaliacao ($paciente, $dentistaAvaliador, $data);
-    $novaConsultaDeAvaliacao->save();
-    echo ("Consulta de avaliação marcada\n");
-    return $novaConsultaDeAvaliacao;
+  
+  static public function AgendarConsultaDeAvaliacao ($usuario, $paciente, $dentistaAvaliador, $data) {
+    $usuarioLogado = $usuario->getLogado();
+        
+        if($usuario->getPerfilDoUsuario() != null)
+        {
+            $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento de Consulta de Avaliação");
+        }
+        else{
+            $existeFuncionalidade = false;
+        }
+        if($usuarioLogado && $existeFuncionalidade){
+          $novaConsultaDeAvaliacao = new ConsultaDeAvaliacao ($usuario, $paciente, $dentistaAvaliador, $data);
+          $novaConsultaDeAvaliacao->save();
+          echo ("Consulta de avaliação marcada\n");
+          return $novaConsultaDeAvaliacao;
+        }
+        else{
+          if(!$usuarioLogado){
+              echo "\nErro: Não foi possível realizar o agendamento da consulta de avaliação porque o usuário '" . $usuario->getLogin() . "' não está logado!\n\n";
+          }
+          else{
+              echo "\nErro: Não foi possível realizar o agendamento da consulta de avaliaçã porque o usuário '" . $usuario->getLogin() . "' não tem permissão para realizar esse agendamento!\n\n";
+          }
+        }
   }
 
   public function ConfirmarRealizacaoDaConsulta () {
