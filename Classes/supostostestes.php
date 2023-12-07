@@ -173,68 +173,13 @@ echo "\n\tTESTE 10\n";
 echo "\tRegistrar pagamento\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-/*
-// paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
 $valorPago = ($tratamento->getValorTotal())/2;
 
-RegistroDePagamento::RegistrarPagamento($tratamento, "PIX", 1, $valorPago, "2023-12-06 07:23:00");
-RegistroDePagamento::RegistrarPagamento($tratamento, "Cartão de crédito", 3, $valorPago, "2023-12-06 07:24:00");
+RegistroDePagamento::RegistrarPagamento($usuario1, "PIX", 1, $valorPago, "2023-12-06 07:23:00");
+RegistroDePagamento::RegistrarPagamento($usuario1, "Crédito", 3, $valorPago, "2023-12-06 07:24:00");
 
-//cálculo do resultado financeiro da clínica no mês de novembro/2023
+echo "\n\tTESTE 11\n"; 
+echo "\tCálculo de receita mensal da clínica\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-
-
-
-//cadastrando cliente e paciente
-$cliente = new Cliente("Pedro Nunes", "(12) 95465-1121", "pedro@email.com", "123.456.789-10", "12.345.678-9");
-$cliente -> salvarCliente();
-
-$paciente = new Paciente("Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "Limpeza", "1997-12-10", $cliente);
-$paciente -> salvarPaciente();
-
-$cliente -> adicionarPaciente($cliente, $paciente);
-
-
-//agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
-$arrayDentistas = Dentista::getRecordsByField( "cpf", '123.456.789-02'); 
-if (empty($arrayDentistas)) 
-    $dentistaExecutor = 0;
-else 
-    $dentistaExecutor = $arrayDentistas[0];
-  
-$pacienteAgendado = Paciente::buscarPaciente('123.458.789-10');
-
-if ($dentistaExecutor != 0 && $pacienteAgendado != 0 )
-    $consultaAvaliacao = new Consulta($pacienteAgendado, $dentistaExecutor, "2013-11-06 14:00:00", 60, null, true);
-
-
-//após a realização da consulta de avaliação, deve ser cadastrado um orçamento para o paciente (olhar especificações do orçamento no pdf do prof)
-$arrayProcedimentos1 = Procedimento::getRecordsByField( "nomeDoProcedimento", "Limpeza"); 
-if (empty($arrayProcedimentos1)) 
-    $procedimentoParaExecutar1 = 0;
-else 
-    $procedimentoParaExecutar1 = $arrayProcedimentos1[0];
-
-$arrayProcedimentos2 = Procedimento::getRecordsByField( "nomeDoProcedimento", "Clareamento a laser"); 
-if (empty($arrayProcedimentos2)) 
-    $procedimentoParaExecutar2 = 0;
-else 
-    $procedimentoParaExecutar2 = $arrayProcedimentos2[0];
-
-$arrayProcedimentos3 = Procedimento::getRecordsByField( "nomeDoProcedimento", "Restauração"); 
-if (empty($arrayProcedimentos3)) 
-    $procedimentoParaExecutar3 = 0;
-else 
-    $procedimentoParaExecutar3 = $arrayProcedimentos3[0];
-
-
-$orcamento = new Orcamento($pacienteAgendado, $dentistaExecutor, "2013-11-06 14:00:00", [$procedimentoParaExecutar1, $procedimentoParaExecutar2, $procedimentoParaExecutar3, $procedimentoParaExecutar3], 2270);
-$orcamento->save();
-
-//agendada uma consulta para realização de cada procedimento o após a consulta de avaliação e posterior aprovação do orçamento.
-
-// paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
-
-
-//cálculo do resultado financeiro da clínica no mês de novembro/2023
-*/
+ReceitaMensal::calcularReceitaMensal();

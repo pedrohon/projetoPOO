@@ -11,16 +11,14 @@ class RegistroDePagamento extends persist {
 
   protected $valorPago;
   protected $dataPagamento;
-  protected $tratamento;
+  protected $parcelas;
+  protected $formaDePagamento;
 
-  public function __construct($valorPago, $dataPagamento, Tratamento $tratamento) {
+  public function __construct($formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
     $this->valorPago = $valorPago;
     $this->dataPagamento = $dataPagamento;
-    $this->tratamento = $tratamento;
-  }
-
-  public function acessarFormaDePagamento(FormaDePagamento $nomeFormaDePagamento){
-    $nomeFormaDePagamento = getNomeFormaDePagamento();//pq nao vai?
+    $this->formaDePagamento = $formaDePagamento;
+    $this->parcelas = $parcelas;
   }
 
   public function getValorPago() {
@@ -39,7 +37,7 @@ class RegistroDePagamento extends persist {
     $this->dataPagamento = $dataPagamento;
   }
 
-  public function RegistrarPagamento ($usuario, $tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
+  static public function RegistrarPagamento ($usuario, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
     $usuarioLogado = $usuario->getLogado();
         
         if($usuario->getPerfilDoUsuario() != null)
@@ -50,8 +48,8 @@ class RegistroDePagamento extends persist {
             $existeFuncionalidade = false;
         }
         if($usuarioLogado && $existeFuncionalidade){
-          $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
-          $novoRegistro->save();
+          $novoRegistro = new RegistroDePagamento ($formaDePagamento, $parcelas, $valorPago, $dataPagamento);
+          $novoRegistro->save();        
           echo ("Pagamento registrado\n");
           return $novoRegistro;
         }
@@ -67,7 +65,7 @@ class RegistroDePagamento extends persist {
 
 
 
-    
+
   }
 
   public function salvarRegistroDePagamento () {
