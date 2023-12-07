@@ -39,10 +39,35 @@ class RegistroDePagamento extends persist {
     $this->dataPagamento = $dataPagamento;
   }
 
-  public function RegistrarPagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
-    $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
-    $novoRegistro->save();
-    echo ("Pagamento registrado\n");
+  public function RegistrarPagamento ($usuario, $tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento) {
+    $usuarioLogado = $usuario->getLogado();
+        
+        if($usuario->getPerfilDoUsuario() != null)
+        {
+            $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Registro de Pagamento");
+        }
+        else{
+            $existeFuncionalidade = false;
+        }
+        if($usuarioLogado && $existeFuncionalidade){
+          $novoRegistro = new RegistroDePagamento ($tratamento, $formaDePagamento, $parcelas, $valorPago, $dataPagamento);
+          $novoRegistro->save();
+          echo ("Pagamento registrado\n");
+          return $novoRegistro;
+        }
+        else{
+          if(!$usuarioLogado){
+              echo "\nErro: Não foi possível realizar o registro de pagamento porque o usuário '" . $usuario->getLogin() . "' não está logado!\n\n";
+          }
+          else{
+              echo "\nErro: Não foi possível realizar o registro de pagamento porque o usuário '" . $usuario->getLogin() . "' não tem permissão para realizar esse registro!\n\n";
+          }
+        }
+
+
+
+
+    
   }
 
   public function salvarRegistroDePagamento () {
