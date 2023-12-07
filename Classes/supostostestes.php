@@ -9,14 +9,16 @@ $funcionalidade3 = new Funcionalidade("Cadastro Orcamento");
 $funcionalidade4 = new Funcionalidade("Cadastro Cliente");
 $funcionalidade5 = new Funcionalidade("Cadastro Procedimento");
 $funcionalidade6 = new Funcionalidade("Cadastro Paciente");
+$funcionalidade7 = new Funcionalidade("Agendamento de Consulta de Avaliação");
 $funcionalidade1->salvarFuncionalidade();
 $funcionalidade2->salvarFuncionalidade();
 $funcionalidade3->salvarFuncionalidade();
 $funcionalidade4->salvarFuncionalidade();
 $funcionalidade5->salvarFuncionalidade();
 $funcionalidade6->salvarFuncionalidade();
+$funcionalidade7->salvarFuncionalidade();
 
-$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3, $funcionalidade4, $funcionalidade5, $funcionalidade6];
+$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3, $funcionalidade4, $funcionalidade5, $funcionalidade6, $funcionalidade7];
 $funcionalidesDentista = [$funcionalidade2, $funcionalidade3, $funcionalidade4];
 $perfil1 = new Perfil("Administrador", $funcionalidadesAdmin);
 $perfil2 = new Perfil("Dentista", $funcionalidesDentista);
@@ -142,20 +144,20 @@ echo "\n\tTESTE 6\n";
 echo "\tAgendamento de consulta de avaliação para dia 06/11 às 14h\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-$novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao($usuario1, "123.458.789-10", "54321", "2023-11-06 14:00:00");
+$novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao($usuario1, $paciente, "54321", "2023-11-06 14:00:00");
 $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 
 echo "\n\tTESTE 7\n"; 
 echo "\tCadastro e aprovação do orçamento\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-$cadastroOrcamento = new CadastroOrcamento();
-$orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
-$tratamento = $orcamento->aprovarOrcamento("Cartão de crédito");
+//$cadastroOrcamento = new CadastroOrcamento();
+//$orcamento = $cadastroOrcamento->cadastrarNovoOrcamento($usuario1, $paciente, "54321", "2023-12-06 03:24:00", ["Limpeza","Clareamento a laser", "Restauração", "Restauração"]);
+//$tratamento = $orcamento->aprovarOrcamento("Cartão de crédito");
 
 
 echo "\n\tTESTE 8\n"; 
-echo "\tCadastro e aprovação do orçamento\n\n";
+echo "\tAgendar consultas do tratamento\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 /*
 //agendada uma consulta para realização de cada procedimento.
