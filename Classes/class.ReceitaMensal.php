@@ -17,38 +17,52 @@ class ReceitaMensal extends persist {
     $this->receitasDeTratamentoNoMes = $receitasDeTratamentoNoMes;
   }
 
-  public function calcularReceitasTratamento() {
-    if (empty($this->receitasDeTratamentoNoMes)) 
-        return 0;
-    
-    $receitasTratamento = array_sum($this->receitasDeTratamentoNoMes);
-    return $receitasTratamento;
-  }
 
-  static public function calcularCustosSalario() {
-    $profissionais = Profissional::getRecords();
-    $somaSalarios = 0;
+  static public function calcularReceitaMensal() {
+      $profissionais = Profissional::getRecords();
+      $somaSalarios = 0;
 
-    foreach ($profissionais as $profissional) {
-      $somaSalarios += $profissional->getSalario();
-    }
-  }
+      foreach ($profissionais as $profissional) {
+        $somaSalarios += $profissional->getSalario();
+      }
+
+      $receitas = RegistroDePagamento::getRecords();
+      $receitasTratamento = 0;
+
+      foreach ($receitasDeTratamentoNoMes as $receita) {
+        $valorPago = $receita->valorPago;
+        $formaDePagamento = $receita->formaDePagamento;
+
+        switch ($formaDePagamento) {
+          case 'Dinheiro à vista':
+            $receitasTratamento += $valorPago;
+            break;
+          case 'Pix':
+            $receitasTratamento += $valorPago*0.97;
+            break;
+          case 'Débito':
+            $receitasTratamento += $valorPago;
+            break;
+          case 'Crédito':
+            $parcelas = $receita->parcelas;
+            if($parcelas == 1 || $parcelas == 2 || $parcelas == 3){ 
+              $receitasTratamento += $valorPago*0.96;
+            }
+            elseif($parcelas == 4 || $parcelas == 5 || $parcelas == 6){
+              $receitasTratamento += $valorPago*0.93;
+            }
+            break;
+          default:
+            break;
+        }
+        
+        $receitasTratamento += $receita->getValorTotal();
+      }
 
 
-  public function calcularReceitaMensal() {
-    if (empty($this->salariosNoMes)) 
-      $custosSalario = 0;  
-    else
-      $custosSalario = array_sum($this->salariosNoMes);
+      $custosSalario = $this->calcularCustosSalario();
+      $receitasTratamento = $this->calcularReceitasTratamento();
 
-    if (empty($this->receitasDeTratamentoNoMes)) 
-      $receitasTratamento = 0;  
-    else
-      $receitasTratamento = array_sum($this->receitasDeTratamentoNoMes);
-
-    return ($receitasTratamento - $custosSalario);
+      echo "A receita mensal é de: " . ($receitasTratamento - $custosSalario);
   }
 }
-
-
-

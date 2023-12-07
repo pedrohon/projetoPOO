@@ -2,4 +2,4 @@
 
 include_once '../global.php';
 
-ReceitaMensal::calcularCustosSalario();
+ReceitaMensal::calcularReceitaMensal();
