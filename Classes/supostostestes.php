@@ -52,32 +52,22 @@ echo "\tusuário previamente cadastrado e com perfil de acesso a todas as funcio
 echo "\tdeve fazer o login no sistema com sucesso para iniciar os testes\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
-//$usuario1 = Usuario::getInstancia("pedro", "senha");
-$usuario1 = Usuario::getInstancia("admin", "admin");
+$usuario1 = Usuario::getInstancia("pedro", "senha");
 $usuario1->realizaLogin();
+
 $cadastroProcedimento = new CadastroProcedimento();
 $cadastroProcedimento->cadastrarNovoProcedimento($usuario1, "Extração Comum", "Não inclui dente siso.", 280, 1);
+
+$usuario1->realizaLogout();
+
+$usuario1 = Usuario::getInstancia("admin", "admin");
+$usuario1->realizaLogin();
+
 
 /* ele conseguiria cadastrar um Cliente
 $cadastroCliente = new CadastroCliente();
 $cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 */
-
-
-//$usuario1 = new Usuario("admin", "admin", $perfil1);
-//$usuario2 = new Usuario("pedro", "pedro", $perfil2);
-//$usuario1->salvarUsuario();
-//$usuario2->salvarUsuario();
-
-//$usuario1->realizaLogout();
-//$usuario1->realizaLogin();
-
-
-
-
-
-
-
 
 // tente realizar o cadastro de um Procedimento com este usuário e comprove que o controle de acesso funciona satisfatoriamente
 // em seguida faça o logout deste usuário
