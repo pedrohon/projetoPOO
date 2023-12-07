@@ -3,9 +3,9 @@
 class RealizacaoProcedimento extends persist{
 
     static $local_filename = "RealizacaoProcedimento.txt";
-  static public function getFilename() {
-    return get_called_class()::$local_filename;
-  }
+    static public function getFilename() {
+        return get_called_class()::$local_filename;
+    }
     protected $idRealizacaoProcedimento;
     protected $procedimentoRealizado;
     protected $dataConclusaoProcedimento;

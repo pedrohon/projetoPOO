@@ -2,12 +2,12 @@
 
 class AgendamentoDeConsulta {
 
-    static public function AgendarConsulta (Usuario $usuario, Paciente $paciente, Dentista $dentistaExecutor, $data, $duracaoPrevista, $procedimento) {
+    static public function AgendarConsulta (Usuario $usuario, Paciente $paciente, $dentistaExecutor, $data, $duracaoPrevista, $procedimento) {
         $usuarioLogado = $usuario->getLogado();
             
             if($usuario->getPerfilDoUsuario() != null)
             {
-                $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento de Consulta");
+                $existeFuncionalidade = $usuario->getPerfilDoUsuario()->verificaFuncionalidade("Agendamento Consulta");
             }
             else{
                 $existeFuncionalidade = false;

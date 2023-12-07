@@ -11,6 +11,8 @@ $funcionalidade5 = new Funcionalidade("Cadastro Procedimento");
 $funcionalidade6 = new Funcionalidade("Cadastro Paciente");
 $funcionalidade7 = new Funcionalidade("Agendamento de Consulta de Avaliação");
 $funcionalidade8 = new Funcionalidade("Cadastro Profissional");
+$funcionalidade9 = new Funcionalidade("Agendamento Consulta");
+$funcionalidade10 = new Funcionalidade("Registro de Pagamento");
 $funcionalidade1->salvarFuncionalidade();
 $funcionalidade2->salvarFuncionalidade();
 $funcionalidade3->salvarFuncionalidade();
@@ -19,8 +21,10 @@ $funcionalidade5->salvarFuncionalidade();
 $funcionalidade6->salvarFuncionalidade();
 $funcionalidade7->salvarFuncionalidade();
 $funcionalidade8->salvarFuncionalidade();
+$funcionalidade9->salvarFuncionalidade();
+$funcionalidade10->salvarFuncionalidade();
 
-$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3, $funcionalidade4, $funcionalidade5, $funcionalidade6, $funcionalidade7, $funcionalidade8];
+$funcionalidadesAdmin = [$funcionalidade1, $funcionalidade2, $funcionalidade3, $funcionalidade4, $funcionalidade5, $funcionalidade6, $funcionalidade7, $funcionalidade8, $funcionalidade9, $funcionalidade10];
 $funcionalidesDentista = [$funcionalidade2, $funcionalidade3, $funcionalidade4];
 $perfil1 = new Perfil("Administrador", $funcionalidadesAdmin);
 $perfil2 = new Perfil("Dentista", $funcionalidesDentista);
@@ -162,15 +166,17 @@ echo "\tAgendar consultas do tratamento\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
 $novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 13:00:00", 30, "Limpeza");
-//$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 13:00:00", 30, "Limpeza");
-//$novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
+$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 13:30:00", 180, "Clareamento a laser");
+$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 16:30:00", 60, "Restauração");
+$novaConsulta = AgendamentoDeConsulta::AgendarConsulta($usuario1, $paciente, "12345", "2023-12-13 17:30:00", 60, "Restauração");
+
+echo "\n\tTESTE 9\n"; 
+echo "\tConfirmar realização dos procedimentos\n\n";
+echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
+
+
 
 /*
-//agendada uma consulta para realização de cada procedimento.
-//agendar as consultas 
-//confirmar a ralizacao dos procedimentos
-
-
 // paciente deve realizar dois pagamentos: 50% à vista no pix e 50% no cartão de crédito em 3x
 $valorPago = ($tratamento->getValorTotal())/2;
 
