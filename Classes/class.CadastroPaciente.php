@@ -19,9 +19,10 @@ class CadastroPaciente {
                 echo "Paciente já cadastrado!\n";
             }
             catch(Exception $e){
-                $novoPaciente = new Paciente($nome, $telefone, $email, $cpf, $rg);
+                $novoPaciente = new Paciente($nome, $telefone, $email, $cpf, $rg, $dataDeNascimento, $responsavelFinanceiro);
                 $novoPaciente->save();
                 echo "Paciente cadastrado com sucesso!\n";
+                return ($novoPaciente);
             }
         }
         else{

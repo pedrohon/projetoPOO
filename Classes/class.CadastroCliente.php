@@ -22,6 +22,7 @@ class CadastroCliente {
                 $novoCliente = new Cliente($nome, $telefone, $email, $cpf, $rg);
                 $novoCliente->save();
                 echo "Cliente cadastrado com sucesso!\n";
+                return ($novoCliente);
             }
         }
         else{

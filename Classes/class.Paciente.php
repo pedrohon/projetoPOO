@@ -9,7 +9,6 @@ class Paciente extends Pessoa {
     return get_called_class()::$local_filename;
   }
 
-  protected $tratamento = array();
   protected $responsavelFinanceiro;
   protected $dataDeNascimento;
 
