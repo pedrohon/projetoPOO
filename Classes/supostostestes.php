@@ -178,5 +178,4 @@ $valorPago = ($tratamento->getValorTotal())/2;
 RegistroDePagamento::RegistrarPagamento($usuario1, "PIX", 1, $valorPago, "2023-12-06 07:23:00");
 RegistroDePagamento::RegistrarPagamento($usuario1, "Cartão de crédito", 3, $valorPago, "2023-12-06 07:24:00");
 
-/*
 //cálculo do resultado financeiro da clínica no mês de novembro/2023
