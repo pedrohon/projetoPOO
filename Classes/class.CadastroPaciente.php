@@ -3,7 +3,7 @@
 include_once '../global.php';
 
 class CadastroPaciente {
-    public function cadastrarNovoPaciente($usuario, $nome, $telefone, $email, $cpf, $rg, $tratamento, $dataDeNascimento, /*Cliente*/ $responsavelFinanceiro){
+    public function cadastrarNovoPaciente($usuario, $nome, $telefone, $email, $cpf, $rg, $dataDeNascimento, /*Cliente*/ $responsavelFinanceiro){
         $usuarioLogado = $usuario->getLogado();
         
         if($usuario->getPerfilDoUsuario() != null)
