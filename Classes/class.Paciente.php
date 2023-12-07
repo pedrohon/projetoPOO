@@ -13,15 +13,10 @@ class Paciente extends Pessoa {
   protected $responsavelFinanceiro;
   protected $dataDeNascimento;
 
-  public function __construct($nome, $telefone, $email, $cpf, $rg, $tratamento, $dataDeNascimento, /*Cliente*/ $responsavelFinanceiro) {
+  public function __construct($nome, $telefone, $email, $cpf, $rg, $dataDeNascimento, /*Cliente*/ $responsavelFinanceiro) {
     parent::__construct($nome, $telefone, $email, $cpf, $rg);
-    $this->tratamento = $tratamento;
     $this->dataDeNascimento = $dataDeNascimento;
     $this->responsavelFinanceiro = $responsavelFinanceiro;
-  }
-
-  public function getTratamento() {
-    return $this->tratamento;
   }
 
   public function getDataDeNascimento() {
@@ -30,10 +25,6 @@ class Paciente extends Pessoa {
 
   public function getResponsavelFinanceiro() {
     return $this->responsavelFinanceiro;
-  }
-
-  public function adicionarTratamento(Tratamento $tratamento) {
-    $this->tratamento[] = $tratamento;
   }
 
   public function setDataDeNascimento($dataDeNascimento) {
@@ -52,7 +43,6 @@ class Paciente extends Pessoa {
     echo "Email: " . $this->email . "\n";
     echo "CPF: " . $this->cpf . "\n";
     echo "RG: " . $this->rg . "\n";
-    echo "Tratamento: " . $this->tratamento . "\n";
     echo "Data de Nascimento: " . $this->dataDeNascimento . "\n";
     echo "------------------------\n";
     echo "\nResponsável Financeiro: ";

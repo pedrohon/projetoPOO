@@ -120,28 +120,27 @@ echo "\tCadastro dos dentistas\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n";
 
 $cadastroDentista = new CadastroDentista();
-$cadastroDentista->cadastrarNovoDentista("Alice", "987654321", "alice@example.com", "987.654.321-02", "7654321", 5000, "Rua ABC", "Dentista", "12345", [" Clínica Geral", "Endodontia", "Cirurgia"], false);
+$cadastroDentista->cadastrarNovoDentista($usuario1, "Alice", "987654321", "alice@example.com", "987.654.321-02", "7654321", 5000, "Rua ABC", "Dentista", "12345", [" Clínica Geral", "Endodontia", "Cirurgia"], false);
 
 $cadastroDentista = new CadastroDentista();
-$cadastroDentista->cadastrarNovoDentista("Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 0, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
+$cadastroDentista->cadastrarNovoDentista($usuario1, "Lucas", "9123456789", "lucas@example.com", "123.456.789-02", "1234567", 0, "Rua CBA", "Dentista", "54321", [" Clínica Geral", "Estética"], true);
 
 
 echo "\n\tTESTE 5\n"; 
 echo "\tCadastro do cliente e paciente\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-//$cadastroCliente = new CadastroCliente();
-//$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
+$cadastroCliente = new CadastroCliente();
+$cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
  
-//$cadastroPaciente = new cadastroPaciente();
-//$cadastroPaciente->cadastrarNovoPaciente($usuario1, "Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "1997-12-10", $cliente);
+$cadastroPaciente = new cadastroPaciente();
+$cadastroPaciente->cadastrarNovoPaciente($usuario1, "Paulo", "(12) 00000-0000", "paulo@email.com", "123.458.789-10", "12.345.678-9", "1997-12-10", $cliente);
 
 echo "\n\tTESTE 6\n"; 
 echo "\tAgendamento de consulta de avaliação para dia 06/11 às 14h\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n"; 
 
-//agendamento de uma consulta de avaliação com o dentista parceiro para o dia 06/11 às 14h
-$novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao("123.456.789-10", "54321", "2023-11-06 14:00:00");
+$novaConsultaDeAvaliacao = ConsultaDeAvaliacao::AgendarConsultaDeAvaliacao("123.458.789-10", "54321", "2023-11-06 14:00:00");
 $novaConsultaDeAvaliacao -> ConfirmarRealizacaoDaConsulta();
 
 /*
