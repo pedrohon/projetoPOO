@@ -25,13 +25,15 @@ class ReceitaMensal extends persist {
     return $receitasTratamento;
   }
 
-  public function calcularCustosSalario() {
-    if (empty($this->salariosNoMes)) 
-        return 0;    
+  static public function calcularCustosSalario() {
+    $profissionais = Profissional::getRecords();
+    $somaSalarios = 0;
 
-    $custosSalario = array_sum($this->salariosNoMes);
-    return $custosSalario;
+    foreach ($profissionais as $profissional) {
+      $somaSalarios += $profissional->getSalario();
+    }
   }
+
 
   public function calcularReceitaMensal() {
     if (empty($this->salariosNoMes)) 
