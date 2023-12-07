@@ -69,10 +69,6 @@ $cadastroCliente = new CadastroCliente();
 $cadastroCliente->cadastrarNovoCliente($usuario1, "Pedro", "(12) 98119-4717", "pedro@email.com", "123.456.789-10", "12.345.678-9");
 */
 
-// tente realizar o cadastro de um Procedimento com este usuário e comprove que o controle de acesso funciona satisfatoriamente
-// em seguida faça o logout deste usuário
-// outro usuário previamente cadastrado, com perfil de acesso a todas as funcionalidades, deverá fazer o login para a sequência dos testes
-
 echo "\n\tTESTE 3\n"; 
 echo "\tCadastro dos procedimentos\n\n";
 echo "----------------------------------------------------------------------------------------------------------------- \n\n";
